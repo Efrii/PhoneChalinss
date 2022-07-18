@@ -1,0 +1,99 @@
+﻿@*@using PhoneChalin;
+@model dynamic*@
+@model IEnumerable<PhoneChalin.Models.Role>
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Smartphone Chalin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row shadow p-3 mb-3 bg-white rounded mt-3">
+                <div class="col">
+                    <div class="text-center mt-5">
+                        <img style="width:35% !important;" src="~/images/logo.png" class="img-fluid img-logo-login" />
+                    </div>
+                    <div class="text-center">
+                        <span class="text-danger">@TempData["error"]</span>
+                    </div>
+                    <form asp-action="Register">
+                        <div class="form-group">
+                            <label>Name Employee</label>
+                            <input type="text" class="form-control" name="NameEmployee" id="NameEmployee" placeholder="Name Employee">
+                            @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label>Nip Employee</label>
+                            <input type="text" class="form-control" name="NipEmployee" id="NipEmployee" placeholder="Nip Employee">
+                            @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label>Age Employee</label>
+                            <input type="text" class="form-control" name="AgeEmployee" id="AgeEmployee" placeholder="Age Employee">
+                            @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label>Gender Employee</label>
+                            <select name="GenderEmployee" id="GenderEmployee" class="form-control">
+                                <option>Choice Gender</option>
+                                <option value="L">Laki - Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="StatusEmployee" id="StatusEmployee" class="form-control">
+                                <option>Choice Status Employee</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Employee</label>
+                            <input type="text" class="form-control" name="Email" id="Email" placeholder="Email Employee">
+                            @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="Username" id="Username" placeholder="Username">
+                            @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
+                            @*<span asp-validation-for="Password" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            @foreach(var item in Model)
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="UserRoles" type="checkbox" value="@Html.DisplayFor(model => item.IdRole)">
+                                        <label class="form-check-label" for="@Html.DisplayFor(model => item.RoleEmployee)">@Html.DisplayFor(model => item.RoleEmployee)</label>
+                                    </div>
+                                }
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" value="Save" class="btn btn-info btn-lg btn-block">Register</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-3">Have an account ? <a asp-controller="Account" asp-action="Login">Login</a></p>
+                    <p class="text-center mt-3">Back to main <a asp-controller="Smartphone" asp-action="Catalog">Menu</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

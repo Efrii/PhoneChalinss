@@ -1,0 +1,29 @@
+﻿@model PhoneChalin.Models.Smartphone
+
+@{
+    ViewData["Title"] = "Delete Data Smartphone";
+}
+
+<h3>Delete Data Smartphone @Html.DisplayFor(model => model.NameSmartphone)</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <input type="hidden" asp-for="IdSmartphone" />
+        <input type="hidden" asp-for="IdSupplier" />
+        <div class="form-group">
+            <label asp-for="NameSmartphone" for="exampleInputEmail1">@Html.DisplayNameFor(model => model.NameSmartphone)</label>
+            <input asp-for="NameSmartphone" type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriceSmartphone" for="exampleInputPassword1">@Html.DisplayNameFor(model => model.PriceSmartphone)</label>
+            <input asp-for="PriceSmartphone" type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="StockSmartphoen" for="exampleInputPassword1">@Html.DisplayNameFor(model => model.StockSmartphoen)</label>
+            <input asp-for="StockSmartphoen" type="text" class="form-control" readonly>
+        </div>
+        <a asp-action="DeleteAction" class="btn btn-danger" asp-route-Id="@Model.IdSmartphone">Delete</a>
+    </div>
+</div>
+
+

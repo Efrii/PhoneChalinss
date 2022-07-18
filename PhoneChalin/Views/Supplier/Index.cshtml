@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PhoneChalin.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Data Supplier";
+}
+
+<h3 class="mb-2 text-center">DATA SUPPLIER</h3>
+
+<a asp-action="Create" class="btn btn-primary mb-2" asp-controller="Supplier">Add Data Supplier</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandSupplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameSupplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.BrandSupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.NameSupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-Id="@item.IdSupplier">Edit</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@item.IdSupplier">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

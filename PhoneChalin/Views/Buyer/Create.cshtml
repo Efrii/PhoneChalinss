@@ -1,0 +1,32 @@
+﻿@model PhoneChalin.Models.Buyer
+
+@{
+    ViewData["Title"] = "Create Data Buyer";
+}
+
+<h3>Halaman Input Data Buyer Baru</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label>Name Buyer</label>
+                <input type="text" asp-for="NameBuyer" class="form-control" placeholder="Name Buyer" />
+                <span asp-validation-for="NameBuyer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Gender Buyer</label>
+                <input type="text" asp-for="Gender" class="form-control" placeholder="Gender Buyer" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Phone Buyer</label>
+                <input type="text" asp-for="Phone" class="form-control" placeholder="Phone Buyer" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

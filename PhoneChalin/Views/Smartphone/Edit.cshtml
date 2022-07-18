@@ -1,0 +1,41 @@
+﻿@model PhoneChalin.Models.Smartphone
+
+@{
+    ViewData["Title"] = "Edit Data Smartphone";
+}
+
+<h3>Edit Data Smartphone @Html.DisplayFor(model => model.NameSmartphone)</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="IdSmartphone" />
+            <div class="form-group">
+                <label>Select Supplier</label>
+                <select asp-for="IdSupplier" class="form-control" asp-items="ViewBag.Suppliers">
+                    <option>Pilih Supplier</option>
+                </select>
+                <span asp-validation-for="IdSupplier" class="text-danger"></span>
+                @*@Html.DropDownListFor(m => m.IdSupplier, ViewBag.Suppliers as SelectList, "Pilih Supplier", new { @class = "form-control" })*@
+            </div>
+            <div class="form-group">
+                <label asp-for="NameSmartphone">@Html.DisplayNameFor(model => model.NameSmartphone)</label>
+                <input asp-for="NameSmartphone" type="text" class="form-control" placeholder="Insert Name Supplier">
+                <span asp-validation-for="NameSmartphone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceSmartphone">@Html.DisplayNameFor(model => model.PriceSmartphone)</label>
+                <input asp-for="PriceSmartphone" type="text" class="form-control" placeholder="Phone Supplier">
+                <span asp-validation-for="PriceSmartphone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StockSmartphoen">@Html.DisplayNameFor(model => model.StockSmartphoen)</label>
+                <input asp-for="StockSmartphoen" type="text" class="form-control" placeholder="Address Supplier">
+                <span asp-validation-for="StockSmartphoen" class="text-danger"></span>
+            </div>
+            <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+

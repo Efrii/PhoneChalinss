@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PhoneChalin.Models.Buyer>
+
+@{
+    ViewData["Title"] = "Data Buyer";
+}
+
+<h3 class="mb-2 text-center">DATA BUYER</h3>
+
+<a asp-action="Create" class="btn btn-primary mb-2" asp-controller="Buyer">Add Data Buyer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameBuyer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameBuyer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="~/buyer/edit/@item.IdBuyer">Edit</a>
+                    <a class="btn btn-danger" href="~/buyer/detail/@item.IdBuyer" >Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

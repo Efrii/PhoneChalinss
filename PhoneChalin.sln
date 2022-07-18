@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.25
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneChalin", "PhoneChalin\PhoneChalin.csproj", "{2611AF51-0225-40FC-9E41-10A1BEC4EC42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{658F2DF4-3886-4D1F-9524-3E22C640ADFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2611AF51-0225-40FC-9E41-10A1BEC4EC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2611AF51-0225-40FC-9E41-10A1BEC4EC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2611AF51-0225-40FC-9E41-10A1BEC4EC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2611AF51-0225-40FC-9E41-10A1BEC4EC42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{658F2DF4-3886-4D1F-9524-3E22C640ADFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{658F2DF4-3886-4D1F-9524-3E22C640ADFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{658F2DF4-3886-4D1F-9524-3E22C640ADFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{658F2DF4-3886-4D1F-9524-3E22C640ADFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F342C80B-6471-4E7F-977E-46622E235454}
+	EndGlobalSection
+EndGlobal
