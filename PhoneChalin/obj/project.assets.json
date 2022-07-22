@@ -7329,14 +7329,14 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chalindev/Projects/PhoneChalin/PhoneChalin/PhoneChalin.csproj",
+      "projectUniqueName": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/PhoneChalin.csproj",
       "projectName": "PhoneChalin",
-      "projectPath": "/Users/chalindev/Projects/PhoneChalin/PhoneChalin/PhoneChalin.csproj",
+      "projectPath": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/PhoneChalin.csproj",
       "packagesPath": "/Users/chalindev/.nuget/packages/",
-      "outputPath": "/Users/chalindev/Projects/PhoneChalin/PhoneChalin/obj/",
+      "outputPath": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/chalindev/.config/NuGet/NuGet.Config"
+        "/Users/chalindev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

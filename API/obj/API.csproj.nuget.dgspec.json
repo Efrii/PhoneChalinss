@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chalindev/Projects/PhoneChalin/API/API.csproj": {}
+    "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/API.csproj": {}
   },
   "projects": {
-    "/Users/chalindev/Projects/PhoneChalin/API/API.csproj": {
+    "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chalindev/Projects/PhoneChalin/API/API.csproj",
+        "projectUniqueName": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/chalindev/Projects/PhoneChalin/API/API.csproj",
+        "projectPath": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/API.csproj",
         "packagesPath": "/Users/chalindev/.nuget/packages/",
-        "outputPath": "/Users/chalindev/Projects/PhoneChalin/API/obj/",
+        "outputPath": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/chalindev/.config/NuGet/NuGet.Config"
@@ -41,6 +41,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",

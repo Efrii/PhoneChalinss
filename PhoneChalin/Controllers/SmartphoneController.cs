@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PhoneChalin.Context;
 using PhoneChalin.Models;
 using PhoneChalin.Repositories.Data;
 

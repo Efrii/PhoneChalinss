@@ -1,0 +1,85 @@
+﻿<Properties StartupConfiguration="{658F2DF4-3886-4D1F-9524-3E22C640ADFB}|Default">
+  <MonoDevelop.Ide.ItemProperties.PhoneChalin PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PhoneChalin/Views/Buyer/Index.cshtml">
+    <Files>
+      <File FileName="PhoneChalin/Controllers/AccountController.cs" Line="81" Column="16" />
+      <File FileName="PhoneChalin/Views/Account/Register.cshtml" />
+      <File FileName="PhoneChalin/Repositories/Data/AccountRepository.cs" Line="13" Column="27" />
+      <File FileName="API/Program.cs" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Program.cs" />
+      <File FileName="PhoneChalin/Startup.cs" Line="12" Column="36" />
+      <File FileName="PhoneChalin/ViewModels/Register.cs" />
+      <File FileName="API/Repositories/Data/AccountRepository.cs" Line="1" Column="1" />
+      <File FileName="API/Repositories/GenericRepository.cs" />
+      <File FileName="API/Models/Smartphone.cs" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Repositories/GenericRepository.cs" Line="9" Column="28" />
+      <File FileName="PhoneChalin/Repositories/Interfaces/IGeneralRepository.cs" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Repositories/Data/BuyerRepository.cs" Line="9" Column="55" />
+      <File FileName="PhoneChalin/Models/Buyer.cs" Line="6" Column="18" />
+      <File FileName="PhoneChalin/Models/Employee.cs" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Controllers/SupplierController.cs" Line="8" Column="18" />
+      <File FileName="PhoneChalin/Repositories/Data/SmartphoneRepository.cs" Line="5" Column="37" />
+      <File FileName="PhoneChalin/Repositories/Data/SupplierRepository.cs" Line="4" Column="33" />
+      <File FileName="PhoneChalin/Controllers/BuyerController.cs" Line="6" Column="32" />
+      <File FileName="PhoneChalin/Controllers/SmartphoneController.cs" Line="6" Column="27" />
+      <File FileName="PhoneChalin/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Views/Shared/_LayoutAdmin.cshtml" Line="369" Column="97" />
+      <File FileName="PhoneChalin/wwwroot/lib/jquery/dist/jquery.js" Line="1" Column="1" />
+      <File FileName="PhoneChalin/wwwroot/lib/jquery/dist/jquery.min.js" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Views/Smartphone/Index.cshtml" Line="8" Column="1" />
+      <File FileName="PhoneChalin/Views/Smartphone/Catalog.cshtml" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Views/Account/Index.cshtml" Line="1" Column="1" />
+      <File FileName="PhoneChalin/Views/Account/Login.cshtml" Line="16" Column="14" />
+      <File FileName="PhoneChalin/Views/Smartphone/Delete.cshtml" Line="8" Column="16" />
+      <File FileName="PhoneChalin/Views/Smartphone/Edit.cshtml" Line="38" Column="16" />
+      <File FileName="PhoneChalin/Views/Smartphone/Create.cshtml" Line="5" Column="29" />
+      <File FileName="API/Middleware/AuthenticationExtension.cs" Line="1" Column="1" />
+      <File FileName="API/Context/MyContext.cs" Line="1" Column="1" />
+      <File FileName="API/Base/BaseController.cs" Line="1" Column="1" />
+      <File FileName="API/Controllers/AccountController.cs" Line="1" Column="1" />
+      <File FileName="API/Controllers/SmartphoneController.cs" Line="30" Column="21" />
+      <File FileName="API/Startup.cs" Line="51" Column="13" />
+      <File FileName="API/appsettings.json" Line="13" Column="16" />
+      <File FileName="API/Properties/launchSettings.json" Line="24" Column="26" />
+      <File FileName="PhoneChalin/Views/Supplier/Index.cshtml" Line="8" Column="1" />
+      <File FileName="PhoneChalin/Views/Supplier/Edit.cshtml" Line="8" Column="10" />
+      <File FileName="PhoneChalin/Views/Supplier/Delete.cshtml" Line="8" Column="16" />
+      <File FileName="PhoneChalin/Views/Supplier/Create.cshtml" Line="8" Column="5" />
+      <File FileName="PhoneChalin/Views/Buyer/Create.cshtml" Line="8" Column="14" />
+      <File FileName="PhoneChalin/Views/Buyer/Delete.cshtml" Line="8" Column="13" />
+      <File FileName="PhoneChalin/Views/Buyer/Edit.cshtml" Line="8" Column="1" />
+      <File FileName="PhoneChalin/Views/Buyer/Index.cshtml" Line="14" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PhoneChalin" expanded="True">
+            <Node name="PhoneChalin" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="Buyer" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+                <Node name="Smartphone" expanded="True" />
+                <Node name="Supplier" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{658F2DF4-3886-4D1F-9524-3E22C640ADFB}" ItemName="API" ConfigurationId="Default" />
+        <StartupItem ItemId="{2611AF51-0225-40FC-9E41-10A1BEC4EC42}" ItemName="PhoneChalin" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

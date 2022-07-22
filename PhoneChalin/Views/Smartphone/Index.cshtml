@@ -2,57 +2,62 @@
 
 @{
     ViewData["Title"] = "Data Smartphone";
+    Layout = "_LayoutAdmin";
 }
 
-<h3 class="mb-2 text-center">DATA SMARTPHONE</h3>
+<h1 class="h3 mb-4 text-gray-800">DATA SMARTPHONE</h1>
 
-<div class="text-center">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="row">
+    <div class="col">
+        <div class="text-center">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary mb-2" asp-controller="Smartphone">Add Data Smartphone</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NameSmartphone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.supplierModel.NameSupplier)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PriceSmartphone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StockSmartphoen)
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameSmartphone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.supplierModel.NameSupplier)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PriceSmartphone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockSmartphoen)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-Id="@item.IdSmartphone">Edit</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@item.IdSmartphone">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<a asp-action="Create" class="btn btn-primary mb-2" asp-controller="Smartphone">Add Data Smartphone</a>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NameSmartphone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.supplierModel.NameSupplier)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceSmartphone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockSmartphoen)
-            </th>
-            <th>
-                Action
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameSmartphone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.supplierModel.NameSupplier)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PriceSmartphone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StockSmartphoen)
-                </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-Id="@item.IdSmartphone">Edit</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@item.IdSmartphone">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>

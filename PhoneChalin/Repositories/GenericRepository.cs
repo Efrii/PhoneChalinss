@@ -7,7 +7,6 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PhoneChalin.Context;
 using PhoneChalin.Models;
 using PhoneChalin.Repositories.Interfaces;
 namespace PhoneChalin.Repositories

@@ -74,11 +74,11 @@ namespace PhoneChalin.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            var roles = accountRepository.GetRole();
-            if (roles.Count() > 0)
-            {
-                return View(roles);
-            }
+            //var roles = accountRepository.GetRole();
+            //if (roles.Count() > 0)
+            //{
+            //    return View(roles);
+            //}
             return View();
         }
 
@@ -86,23 +86,26 @@ namespace PhoneChalin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(Register register)
         {
-            if (ModelState.IsValid)
-            {
-                var postTask = client.PostAsJsonAsync<Register>("Account/Register", register);
-                postTask.Wait();
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Catalog", "Smartphone");
-                }
-                else
-                {
-                    TempData["loginInvalid"] = "Login Failed";
-                    return View();
-                }
-            }
-            return View();
+            var d = Json(register);
+
+            //if (ModelState.IsValid)
+            //{
+            //    var postTask = client.PostAsJsonAsync<Register>("Account/Register", register);
+            //    postTask.Wait();
+
+            //    var result = postTask.Result;
+            //    if (result.IsSuccessStatusCode)
+            //    {
+            //        return RedirectToAction("Catalog", "Smartphone");
+            //    }
+            //    else
+            //    {
+            //        TempData["loginInvalid"] = "Login Failed";
+            //        return View();
+            //    }
+            //}
+            return d;
         }
     }
 }

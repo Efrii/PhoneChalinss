@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhoneChalin.Context;
 using PhoneChalin.Repositories.Data;
 using PhoneChalin.Repositories.Interfaces;
 
@@ -36,9 +35,9 @@ namespace PhoneChalin
             services.AddScoped<AccountRepository>();
 
             //Connection to sql server database
-            services.AddDbContext<MyContext>(
-                    options => options.UseSqlServer("Data Source=localhost;Initial Catalog=PhoneChalins;User ID=ChalinServer;Password=EfriYanto2021!@")
-                );
+            //services.AddDbContext<MyContext>(
+            //        options => options.UseSqlServer("Data Source=localhost;Initial Catalog=PhoneChalins;User ID=ChalinServer;Password=EfriYanto2021!@")
+            //    );
 
             services.AddControllersWithViews();
 

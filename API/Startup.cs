@@ -47,6 +47,18 @@ namespace API
 
             services.AddControllers();
 
+            //Cors Origin
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:42573", "http://localhost:59315")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
             // USE SWAGER
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -94,6 +106,15 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             // Add authen and author
             app.UseAuthentication();
