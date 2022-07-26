@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -81,6 +82,7 @@ namespace PhoneChalin.Controllers
                 var parsedObject = JObject.Parse(readTask);
                 var dataOnly = parsedObject["data"].ToString();
 
+                ViewData["Smartphone/Index"] = "Smartphone/Index";
                 smartphones = JsonConvert.DeserializeObject<List<Smartphone>>(dataOnly);
             }
             else
@@ -191,5 +193,11 @@ namespace PhoneChalin.Controllers
         }
 
         #endregion Edit
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

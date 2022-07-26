@@ -15,6 +15,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     [Authorize(Roles = "Manajer")]
     public class SmartphoneController : BaseController<Smartphone, SmartphoneRepository, int>
     {
@@ -27,7 +28,6 @@ namespace API.Controllers
 
         [AllowAnonymous]
         [Route("Getall")]
-        [EnableCors]
         [HttpGet]
         public ActionResult<List<Smartphone>> GetAll()
         {

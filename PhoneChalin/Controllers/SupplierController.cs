@@ -28,6 +28,7 @@ namespace PhoneChalin.Controllers
 
             if (buyers != null)
             {
+                ViewData["Supplier/Index"] = "Supplier/Index";
                 return View(buyers);
             }
             return RedirectToAction("Catalog", "Smartphone");
