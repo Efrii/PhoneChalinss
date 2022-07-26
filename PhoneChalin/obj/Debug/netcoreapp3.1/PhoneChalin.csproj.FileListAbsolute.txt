@@ -148,3 +148,4 @@
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/PhoneChalin.genruntimeconfig.cache
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_LayoutAdmin.cshtml.g.cs
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Dashboard/Index.cshtml.g.cs
+/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Employee/Index.cshtml.g.cs

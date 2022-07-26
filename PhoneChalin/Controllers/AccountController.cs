@@ -53,7 +53,7 @@ namespace PhoneChalin.Controllers
 
                     HttpContext.Session.SetString("Token", dataOnly);
 
-                    return RedirectToAction("Catalog", "Smartphone");
+                    return RedirectToAction("Index", "Dashboard");
                 } else
                 {
                     TempData["loginInvalid"] = "Login Failed";

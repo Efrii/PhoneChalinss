@@ -1,16 +1,10 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
 
-function formatRupiah(money) {
-    return new Intl.NumberFormat('id-ID',
-      { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
-    ).format(money);
-}
-
 $(document).ready(function () {
-    $("#smartphone").DataTable({
+    $("#employee").DataTable({
         "processing": true,
         "serverside": true,
         "responsive": true,
@@ -76,7 +70,7 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            "url": "https://localhost:42573/api/Smartphone/Getall",
+            "url": "https://localhost:42573/api/Employee",
             "dataType": "json",
             "dataSrc": "data"
         },
@@ -88,50 +82,50 @@ $(document).ready(function () {
                 }  
             },
             {
-                data: "nameSmartphone",
+                data: "nipEmployee",
             },
             {
-                data: "supplierModel.nameSupplier"
+                data: "nameEmployee"
             },
             {
-                data: null,
-                render: function (data, type, row) {
-                    return formatRupiah(row['priceSmartphone'])
-                }
+                data: "genderEmployee",
             },
             {
-                data: "stockSmartphoen"
+                data: "ageEmployee"
+            },
+            {
+                data: "statusEmployer"
             },
             {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/edit/`+ row['idSmartphone'] +`"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/delete/`+ row['idSmartphone'] +`"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/edit/`+ row['idEmployee'] +`"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/delete/`+ row['idEmployee'] +`"><i class="fas fa-trash-alt"></i></a>
                             </div>`
                 }
             }
         ], 
         "columnDefs": [
             {
-                "targets": [0,4],
+                "targets": [0,1,3,4,5],
                 "className": 'text-center'
             },
             {
-                "targets": 5,
+                "targets": 6,
                 "orderable": false
             }
         ]
     });
-    var paginate = document.getElementById("smartphone_paginate");
+    var paginate = document.getElementById("employee_paginate");
     paginate.classList.add("col");
 
-    var info = document.getElementById("smartphone_info");
+    var info = document.getElementById("employee_info");
     info.classList.add("col");
 
-    var lenght = document.getElementById("smartphone_length");
+    var lenght = document.getElementById("employee_length");
     lenght.classList.add("col");
 
-    var filter = document.getElementById("smartphone_filter");
+    var filter = document.getElementById("employee_filter");
     filter.classList.add("col");
 });

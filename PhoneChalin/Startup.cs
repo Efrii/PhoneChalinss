@@ -33,6 +33,7 @@ namespace PhoneChalin
             services.AddScoped<SmartphoneRepository>();
             services.AddScoped<BuyerRepository>();
             services.AddScoped<AccountRepository>();
+            services.AddScoped<EmployeeRepository>();
 
             //Connection to sql server database
             //services.AddDbContext<MyContext>(
