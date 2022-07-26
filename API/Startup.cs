@@ -39,6 +39,7 @@ namespace API
             services.AddScoped<SupplierRepository>();
             services.AddScoped<AccountRepository>();
             services.AddScoped<BuyerRepository>();
+            services.AddScoped<EmployeeRepository>();
 
             //Connection to sql server database
             services.AddDbContext<MyContext>(

@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{658F2DF4-3886-4D1F-9524-3E22C640ADFB}|Default">
   <MonoDevelop.Ide.ItemProperties.PhoneChalin PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/SmartphoneController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Startup.cs">
     <Files>
       <File FileName="PhoneChalin/Controllers/AccountController.cs" Line="81" Column="16" />
       <File FileName="PhoneChalin/Views/Account/Register.cshtml" />
@@ -9,7 +9,7 @@
       <File FileName="PhoneChalin/Program.cs" />
       <File FileName="PhoneChalin/Startup.cs" />
       <File FileName="PhoneChalin/ViewModels/Register.cs" />
-      <File FileName="API/Repositories/Data/AccountRepository.cs" />
+      <File FileName="API/Repositories/Data/AccountRepository.cs" Line="1" Column="1" />
       <File FileName="API/Repositories/GenericRepository.cs" />
       <File FileName="API/Models/Smartphone.cs" />
       <File FileName="PhoneChalin/Repositories/GenericRepository.cs" />
@@ -20,7 +20,7 @@
       <File FileName="PhoneChalin/Controllers/SupplierController.cs" />
       <File FileName="PhoneChalin/Repositories/Data/SmartphoneRepository.cs" />
       <File FileName="PhoneChalin/Repositories/Data/SupplierRepository.cs" />
-      <File FileName="PhoneChalin/Controllers/BuyerController.cs" />
+      <File FileName="PhoneChalin/Controllers/BuyerController.cs" Line="6" Column="32" />
       <File FileName="PhoneChalin/Controllers/SmartphoneController.cs" />
       <File FileName="PhoneChalin/Views/Shared/_ValidationScriptsPartial.cshtml" />
       <File FileName="PhoneChalin/Views/Shared/_LayoutAdmin.cshtml" />
@@ -36,9 +36,9 @@
       <File FileName="API/Middleware/AuthenticationExtension.cs" />
       <File FileName="API/Context/MyContext.cs" />
       <File FileName="API/Base/BaseController.cs" />
-      <File FileName="API/Controllers/AccountController.cs" />
+      <File FileName="API/Controllers/AccountController.cs" Line="23" Column="17" />
       <File FileName="API/Controllers/SmartphoneController.cs" Line="29" Column="25" />
-      <File FileName="API/Startup.cs" />
+      <File FileName="API/Startup.cs" Line="41" Column="51" />
       <File FileName="API/appsettings.json" />
       <File FileName="API/Properties/launchSettings.json" />
       <File FileName="PhoneChalin/Views/Supplier/Index.cshtml" />
@@ -53,15 +53,26 @@
       <File FileName="API/Repositories/Data/SmartphoneRepository.cs" />
       <File FileName="API/Controllers/BuyerController.cs" />
       <File FileName="API/Controllers/SupplierController.cs" />
+      <File FileName="PhoneChalin/Controllers/DashboardController.cs" Line="15" Column="10" />
+      <File FileName="PhoneChalin/Views/Dashboard/Index.cshtml" Line="1" Column="1" />
+      <File FileName="API/Models/Employee.cs" Line="1" Column="1" />
+      <File FileName="API/Repositories/Data/EmployeeRepository.cs" Line="11" Column="1" />
+      <File FileName="API/Repositories/Data/BuyerRepository.cs" Line="1" Column="1" />
+      <File FileName="API/Controllers/EmployeeController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PhoneChalin" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="SmartphoneController.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Data" expanded="True" />
+                <Node name="Interface" expanded="True" />
               </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

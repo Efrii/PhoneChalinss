@@ -8,11 +8,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Web|AnyCPU' ">
-    <IntermediateOutputPath>obj\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</IntermediateOutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</OutputPath>
+    <OutputPath>bin\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</OutputPath>
     <DefineConstants></DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
@@ -34,6 +34,7 @@
     <None Remove="Microsoft.AspNet.WebApi.Client" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="Views\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
@@ -59,5 +60,6 @@
     <Folder Include="Repositories\Interfaces\" />
     <Folder Include="Views\Account\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Dashboard\" />
   </ItemGroup>
 </Project>
