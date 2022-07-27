@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Smartphone Chalin</title>
+    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -30,13 +31,29 @@
                     <form asp-action="Login">
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" asp-for="Username" placeholder="Username">
-                            <span asp-validation-for="Username" class="text-danger"></span>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="Username" placeholder="Username">
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" asp-for="Password" placeholder="Password">
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-key"></i>
+                                    </div>
+                                </div>
+                                <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
                         </div>
                         <div class="text-center">
                             <button type="submit" value="Save" class="btn btn-info btn-lg btn-block">Login</button>

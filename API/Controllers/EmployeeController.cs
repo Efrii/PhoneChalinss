@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Base;
 using API.Models;
 using API.Repositories.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors]
     public class EmployeeController : BaseController<Employee, EmployeeRepository, int>
     {
         EmployeeRepository employeeRepository;

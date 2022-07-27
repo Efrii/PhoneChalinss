@@ -64,24 +64,31 @@ $(document).ready(function() {
         'method': "GET",
         'contentType': 'application/json'
     }).done(function (result) {
-        
+
+        let nameSmartphone = [];
+        let stockSmartphone = [];
         let arrayName = [];
         let arraySum = [];
+        let arrayColor = [];
         let data = result.data;
-
+        
         $(data).each(function(key,val){
             let same = val.supplierModel.nameSupplier;
+            let colorRandom = Math.floor(Math.random() * 999) + 100;
+
+            nameSmartphone.push(val.nameSmartphone);
+            stockSmartphone.push(val.stockSmartphoen);
             arrayName.push(same);
+            arrayColor.push('#4'+colorRandom+'df');
         }); 
 
         let d = arrayName.filter(onlyUnique);
         for(let i = 0; i < d.length; i++){
-            let filterCat = arrayName.filter(x => x == d[i])
+            let filterCat = arrayName.filter(x => x == d[i]);
             arraySum.push(filterCat.length);
         }
 
-        console.log(arrayName.filter(onlyUnique));
-        console.log(arraySum);
+        console.log(arrayColor);
 
         var ctx = document.getElementById("myAreaChart");
         var myBarChart = new Chart(ctx, {
@@ -90,8 +97,7 @@ $(document).ready(function() {
             labels: arrayName.filter(onlyUnique),
             datasets: [{
             label: "Smartphone ",
-            backgroundColor: "#4e73df",
-            hoverBackgroundColor: "#2e59d9",
+            backgroundColor: arrayColor,
             borderColor: "#4e73df",
             data: arraySum,
             }],
@@ -149,8 +155,79 @@ $(document).ready(function() {
               caretPadding: 10
             },
           }
-        });                         
+        });  
+       
+        var ctx = document.getElementById("stockSmartphone");
+        var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: nameSmartphone,
+            datasets: [{
+              label: "Stock Smartphone ",
+              data: stockSmartphone,
+              backgroundColor: arrayColor,
+              hoverBackgroundColor: arrayColor,
+              hoverBorderColor: arrayColor,
+            }],
+        },
+        options: {
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              left: 10,
+              right: 25,
+              top: 25,
+              bottom: 0
+            }
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                display: false,
+                drawBorder: false
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                min: 0,
+                padding: 10,
+              },
+              gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false
+              }
+            }],
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleMarginBottom: 12,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10
+          },
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+            title: {
+              display: true,
+              text: 'Chart.js Horizontal Bar Chart'
+            }
+          }
+        }
+        });
+        
     });
 
-    
 });

@@ -16,7 +16,7 @@ namespace API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors]
-    [Authorize(Roles = "Manajer")]
+    //[Authorize(Roles = "Manajer")]
     public class SmartphoneController : BaseController<Smartphone, SmartphoneRepository, int>
     {
         SmartphoneRepository repository;
