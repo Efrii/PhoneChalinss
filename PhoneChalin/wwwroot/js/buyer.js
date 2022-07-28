@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
     
-    $("#employee").DataTable({
+    $("#buyer").DataTable({
         "processing": true,
         "serverside": true,
         "responsive": true,
@@ -71,7 +71,7 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            "url": "https://localhost:42573/api/Employee",
+            "url": "https://localhost:42573/api/Buyer",
             "dataType": "json",
             "dataSrc": "data"
         },
@@ -83,50 +83,44 @@ $(document).ready(function () {
                 }  
             },
             {
-                data: "nipEmployee",
+                data: "nameBuyer",
             },
             {
-                data: "nameEmployee"
+                data: "gender"
             },
             {
-                data: "genderEmployee",
-            },
-            {
-                data: "ageEmployee"
-            },
-            {
-                data: "statusEmployer"
+                data: "phone",
             },
             {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/edit/`+ row['idEmployee'] +`"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-primary" href="https://localhost:5001/Smartphone/delete/`+ row['idEmployee'] +`"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-primary" href="#"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-primary" href="#"><i class="fas fa-trash-alt"></i></a>
                             </div>`
                 }
             }
         ], 
         "columnDefs": [
             {
-                "targets": [0,1,3,4,5],
+                "targets": [0,2,3,4],
                 "className": 'text-center'
             },
             {
-                "targets": 6,
+                "targets": 4,
                 "orderable": false
             }
         ]
     });
-    var paginate = document.getElementById("employee_paginate");
+    var paginate = document.getElementById("buyer_paginate");
     paginate.classList.add("col");
 
-    var info = document.getElementById("employee_info");
+    var info = document.getElementById("buyer_info");
     info.classList.add("col");
 
-    var lenght = document.getElementById("employee_length");
+    var lenght = document.getElementById("buyer_length");
     lenght.classList.add("col");
 
-    var filter = document.getElementById("employee_filter");
+    var filter = document.getElementById("buyer_filter");
     filter.classList.add("col");
 });

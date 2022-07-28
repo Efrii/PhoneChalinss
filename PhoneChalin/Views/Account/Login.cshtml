@@ -26,9 +26,9 @@
                         <img style="width:35% !important;" src="~/img/logo.png" class="img-fluid img-logo-login" />
                     </div>
                     <div class="text-center">
-                        <span class="text-danger">@TempData["loginInvalid"]</span>
+                        <span class="text-danger" id="messageError"></span>
                     </div>
-                    <form asp-action="Login">
+                    <form class="needs-validation" novalidate>
                         <div class="form-group">
                             <label>Username</label>
                             <div class="input-group mb-2">
@@ -37,10 +37,11 @@
                                         <i class="fas fa-user"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" asp-for="Username" placeholder="Username">
-                                <span asp-validation-for="Username" class="text-danger"></span>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                                <div class="invalid-feedback" id="errorUsername">
+                                    Usernamer cannot be less than 5 characters
+                                </div>
                             </div>
-                            
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -50,13 +51,15 @@
                                         <i class="fas fa-key"></i>
                                     </div>
                                 </div>
-                                <input type="password" class="form-control" asp-for="Password" placeholder="Password">
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password"  required>
+                                <div class="invalid-feedback" id="errorPassword">
+                                    Password cannot be less than 8 characters
+                                </div>
                             </div>
 
                         </div>
                         <div class="text-center">
-                            <button type="submit" value="Save" class="btn btn-info btn-lg btn-block">Login</button>
+                            <button type="submit" id="submit" class="btn btn-info btn-lg btn-block">Login</button>
                         </div>
                     </form>
                     <p class="text-right mt-2">Forget <a href="#">Password ?</a></p>
@@ -68,6 +71,7 @@
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/account.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

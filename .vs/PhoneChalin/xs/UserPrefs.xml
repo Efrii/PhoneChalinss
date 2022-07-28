@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{658F2DF4-3886-4D1F-9524-3E22C640ADFB}|Default">
   <MonoDevelop.Ide.ItemProperties.PhoneChalin PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/AccountController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Repositories/GenericRepository.cs">
     <Files>
       <File FileName="PhoneChalin/Controllers/AccountController.cs" Line="81" Column="16" />
       <File FileName="PhoneChalin/Views/Account/Register.cshtml" />
@@ -10,7 +10,7 @@
       <File FileName="PhoneChalin/Startup.cs" />
       <File FileName="PhoneChalin/ViewModels/Register.cs" />
       <File FileName="API/Repositories/Data/AccountRepository.cs" />
-      <File FileName="API/Repositories/GenericRepository.cs" />
+      <File FileName="API/Repositories/GenericRepository.cs" Line="48" Column="36" />
       <File FileName="API/Models/Smartphone.cs" />
       <File FileName="PhoneChalin/Repositories/GenericRepository.cs" />
       <File FileName="PhoneChalin/Repositories/Interfaces/IGeneralRepository.cs" />
@@ -36,7 +36,7 @@
       <File FileName="API/Middleware/AuthenticationExtension.cs" />
       <File FileName="API/Context/MyContext.cs" />
       <File FileName="API/Base/BaseController.cs" />
-      <File FileName="API/Controllers/AccountController.cs" Line="23" Column="17" />
+      <File FileName="API/Controllers/AccountController.cs" />
       <File FileName="API/Controllers/SmartphoneController.cs" />
       <File FileName="API/Startup.cs" />
       <File FileName="API/appsettings.json" />
@@ -68,8 +68,9 @@
         <State name="__root__">
           <Node name="PhoneChalin" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="AccountController.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="GenericRepository.cs" selected="True" />
               </Node>
             </Node>
           </Node>

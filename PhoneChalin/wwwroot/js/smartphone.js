@@ -9,55 +9,56 @@ function formatRupiah(money) {
     ).format(money);
 }
 
+// Function for Delete Smartphone
 function deleteSmartphone(idSmartphone) {
-    
     // GET DETAIL SMARTPHONE
     $.ajax({
         url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
         method: "GET",
     }).done((result) => {
-        let val = result.data;
-        let text = '<h4>Apakah anda yakin ingin menghapus data <strong>'+val.nameSmartphone+'</strong></h4>';
-        
-        $("#textDelete").html(text);
-
-        console.log(result);
-    })
-
-    // DELETE DATA SMARTPHONE
-    $("#deleteSmartphone").on("click", function(e){
-        e.preventDefault();
-        $.ajax({
-            headers: { 
-                'Accept': 'application/json',
-                'Content-Type': 'application/json' 
-            },
-            url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
-            type: "DELETE",
-            dataType: "json",
-            success: function(){
-                $("#smartphone").DataTable().ajax.reload();
-                $('#deleteSmartphone').modal('hide');
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Data has been saved'
-                })
-            },
-            error: function (errormessage) {
-                console.log(errormessage)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
-                })
-                    
+        // Using Swal for delete
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete the data " + result.data.nameSmartphone,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // action delete
+                $.ajax({
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                    },
+                    url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(){
+                        $("#smartphone").DataTable().ajax.reload();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your data has been deleted.',
+                            'success'
+                          )
+                    },
+                    error: function (errormessage) {
+                        console.log(errormessage)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
+                        })    
+                    }
+                });
             }
         });
-        e.stopPropagation();
     });
-
 }
 
+// Function for Edit Smartphone
 function editSmartphone(idSmartphone){
 
     let arraySup;
@@ -69,14 +70,15 @@ function editSmartphone(idSmartphone){
         let val = result.data;
         arraySup = val.idSupplier;
         let text = `
-            <input type="text" class="form-control" id="idSmartphone" name="idSmartphone" placeholder="Name Smartphone" value="${val.idSmartphone}" required>
+            <input type="text" class="form-control" id="idSmartphone" name="idSmartphone" placeholder="Name Smartphone" value="${val.idSmartphone}" required hidden disabled>
             <div class="form-group">
                 <div class="col mb-3">
                         <label for="idSupplier">Select Supplier</label>
                         <select class="form-control" id="idSuppliers" required>
+                        
                         </select>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="invalid-feedback">
+                        Supplier is required
                     </div>
                 </div>
             </div>
@@ -84,8 +86,8 @@ function editSmartphone(idSmartphone){
                 <div class="col mb-3">
                         <label for="nameSmartphone">Name Smartphone</label>
                         <input type="text" class="form-control" id="nameSmartphones" name="nameSmartphone" placeholder="Name Smartphone" value="${val.nameSmartphone}" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="invalid-feedback">
+                        Name smartphone is required
                     </div>
                 </div>
             </div>
@@ -93,16 +95,20 @@ function editSmartphone(idSmartphone){
                 <div class="row p-2">
                     <div class="col-6 mb-3">
                         <label for="priceSmartphone">Price Smartphone</label>
-                        <input type="text" class="form-control" id="priceSmartphones" name="priceSmartphone" placeholder="Price Smartphone" value="${val.priceSmartphone}" required>
+                        <input type="text" class="form-control" id="priceSmartphones" name="priceSmartphone" placeholder="Price Smartphone" value="${val.priceSmartphone}" pattern="[0-9]+" required>
                         <div class="invalid-feedback">
-                            Please provide a valid city.
+                                Price smartphone contain numbers
+                                <br>
+                                Price smartphone is required
                         </div>
                     </div>
                         <div class="col-6 mb-3">
                             <label for="stockSmartphoen">Stock Smartphone</label>
-                            <input type="text" class="form-control" id="stockSmartphoens" name="stockSmartphoen" placeholder="Stock Smartphone" value="${val.stockSmartphoen}" required>
+                            <input type="text" class="form-control" id="stockSmartphoens" name="stockSmartphoen" placeholder="Stock Smartphone" value="${val.stockSmartphoen}" pattern="[0-9]+" required>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Stock smartphone must contain numbers
+                            <br>
+                            Stock smartphone is rquired
                         </div>
                     </div>
                 </div>
@@ -116,14 +122,14 @@ function editSmartphone(idSmartphone){
             url: "https://localhost:42573/api/Supplier",
             method: "GET",
         }).done((result) => {
-            let text = '';
+            let text = '<option value="">Pilih Supplier</option>';
             $.each(result.data, function (key, isi){
                 text += '<option value="'+isi.idSupplier+'">'+isi.nameSupplier+'</option>'
             });
 
             $("#idSuppliers").html(text);
 
-            //ADD SELECTED
+            //ADD SELECTED ON SELECT OPTION
             for (var option of document.getElementById("idSuppliers").options)
             {
                 if (option.value == arraySup)
@@ -135,6 +141,7 @@ function editSmartphone(idSmartphone){
         });
 
     });
+    
 }
 
 $(document).ready(function () {
@@ -171,7 +178,7 @@ $(document).ready(function () {
                     data: JSON.stringify(obj),
                     success: function(data){
                         $("#smartphone").DataTable().ajax.reload();
-                        $('#editSmartphone').modal('hide');
+                        $('#modaleditSmartphone').modal('hide');
                         Swal.fire({
                             icon: 'success',
                             text: 'Data has been edit'
@@ -184,13 +191,11 @@ $(document).ready(function () {
                             title: 'Oops...',
                             text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
                         })
-                        
                     }
                 });
             }
             form.classList.add('was-validated');
         }, false);
-
     });
 
     // GET SUPPLIER
@@ -198,10 +203,11 @@ $(document).ready(function () {
         url: "https://localhost:42573/api/Supplier",
         method: "GET",
     }).done((result) => {
-        let text = '';
+        let text = '<option value="">Pilih Supplier</option>';
         $.each(result.data, function (key, val){
             text += '<option value="'+val.idSupplier+'">'+val.nameSupplier+'</option>'
         });
+
         $("#idSupplier").html(text);
     });
 
@@ -215,6 +221,7 @@ $(document).ready(function () {
             } else{
 
                 event.preventDefault();
+
                 let obj = {};
                 obj.idSupplier = $("#idSupplier").val();
                 obj.nameSmartphone = $("#nameSmartphone").val();
@@ -239,7 +246,14 @@ $(document).ready(function () {
                         Swal.fire({
                             icon: 'success',
                             text: 'Data has been saved'
-                        })
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#idSupplier").val('');
+                                $("#nameSmartphone").val('');
+                                $("#priceSmartphone").val('');
+                                $("#stockSmartphoen").val('');
+                            }
+                        });
                     },
                     error: function (errormessage) {
                         console.log(errormessage)
@@ -251,7 +265,6 @@ $(document).ready(function () {
                           
                     }
                 });
-                
             }
             form.classList.add('was-validated');
         }, false);
@@ -332,7 +345,7 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                 return meta.row + meta.settings._iDisplayStart + 1;
+                    return meta.row + 1;
                 }  
             },
             {
@@ -354,8 +367,8 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a onClick="editSmartphone('${row['idSmartphone']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#editSmartphone"><i class="fas fa-edit"></i></a>
-                                <a onClick="deleteSmartphone('${row['idSmartphone']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#deleteSmartphone"><i class="fas fa-trash-alt"></i></a>
+                                <a onClick="editSmartphone('${row['idSmartphone']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSmartphone"><i class="fas fa-edit"></i></a>
+                                <a onClick="deleteSmartphone('${row['idSmartphone']}')" href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>
                             </div>`
                 }
             }

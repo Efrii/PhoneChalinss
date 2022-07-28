@@ -3,7 +3,161 @@
 
 // Write your JavaScript code.
 
+// Function for Delete Supplier
+function deleteSupplier(idSupplier) {
+    // GET DETAIL Supplier
+    $.ajax({
+        url: "https://localhost:42573/api/Supplier/"+idSupplier,
+        method: "GET",
+    }).done((result) => {
+        // Using Swal for delete
+        Swal.fire({
+            title: 'Are you sure?',
+            html: "You want to delete the data supplier <strong>" + result.data.nameSupplier +"</strong>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // action delete
+                $.ajax({
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                    },
+                    url: "https://localhost:42573/api/Supplier/"+idSupplier,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(){
+                        $("#supplierDataTable").DataTable().ajax.reload();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your data supplier has been deleted.',
+                            'success'
+                          )
+                    },
+                    error: function (errormessage) {
+                        console.log(errormessage)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
+                        })    
+                    }
+                });
+            }
+        });
+    });
+}
+
+function editSupplier(idSupplier){
+    $.ajax({
+        url: "https://localhost:42573/api/Supplier/"+idSupplier,
+        type: "GET",
+    }).done((result) => {
+        let val = result.data;
+        let text = `
+                <input type="text" class="form-control" name="idSupplier" id="idSuppliers" placeholder="Brand Supplier" required value="${val.idSupplier}" hidden disabled>
+                <div class="form-group">
+                    <div class="col mb-3">
+                            <label for="brandSupplier">Brand Supplier</label>
+                            <input type="text" class="form-control" name="brandSupplier" id="brandSuppliers" placeholder="Brand Supplier" required value="${val.brandSupplier}">
+                        <div class="invalid-feedback">
+                            Brand supplier is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col mb-3">
+                            <label for="nameSupplier">Name Supplier</label>
+                            <input type="text" class="form-control" name="nameSupplier" id="nameSuppliers" placeholder="Name Supplier" required value="${val.nameSupplier}">
+                        <div class="invalid-feedback">
+                            Name supplier is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col mb-3">
+                            <label for="phone">Phone Supplier</label>
+                            <input type="text" class="form-control" name="phone" id="phones" placeholder="Phone Supplier" required value="${val.phone}" minlength="12" maxlength="12" pattern="[0-9]+">
+                        <div class="invalid-feedback">
+                            Phone number cannot be less than 11 characters
+                            <br>
+                            Phone number must contain numbers
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col mb-3">
+                        <label for="address">Address Supplier</label>
+                        <textarea class="form-control" name="address" id="addresss" rows="3" required>${val.address}</textarea>
+                        <div class="invalid-feedback">
+                            Address supplier is required
+                        </div>
+                    </div>
+                </div>
+        `;
+        console.log(text);
+        $("#textEditSupplier").html(text);
+    });
+}
+
 $(document).ready(function () {
+
+    // VALIDATE EDIT DATA
+    var forms = document.getElementsByClassName('needs-validation-edit');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            } else{
+
+                event.preventDefault();
+                
+                let obj = {};
+                obj.idSupplier = $("#idSuppliers").val();
+                obj.brandSupplier = $("#brandSuppliers").val();
+                obj.nameSupplier = $("#nameSuppliers").val();
+                obj.phone = $("#phones").val();
+                obj.address = $("#addresss").val();
+
+                console.log(obj);
+
+                // EDIT DATA
+                $.ajax({
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                    },
+                    url: "https://localhost:42573/api/Supplier",
+                    type: "PUT",
+                    dataType: "json",
+                    data: JSON.stringify(obj),
+                    success: function(data){
+                        $("#supplierDataTable").DataTable().ajax.reload();
+                        $('#modaleditSupplier').modal('hide');
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Data has been edit'
+                        })
+                    },
+                    error: function (errormessage) {
+                        console.log(errormessage)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
+                        })
+                        
+                    }
+                });
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
 
     // VALIDATE ADD DATA SUPPLIER
     var forms = document.getElementsByClassName('needs-validation');
@@ -39,7 +193,14 @@ $(document).ready(function () {
                         Swal.fire({
                             icon: 'success',
                             text: 'Data has been saved'
-                        })
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#brandSupplier").val('');
+                                $("#nameSupplier").val('');
+                                $("#phone").val('');
+                                $("#address").val('');
+                            }
+                        });
                     },
                     error: function (errormessage) {
                         console.log(errormessage)
@@ -132,7 +293,7 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                 return meta.row + meta.settings._iDisplayStart + 1;
+                    return meta.row + 1;
                 }  
             },
             {
@@ -151,15 +312,15 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a class="btn btn-primary" href="https://localhost:5001/Supplier/edit/`+ row['idSupplier'] +`"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-primary" href="https://localhost:5001/Supplier/delete/`+ row['idSupplier'] +`"><i class="fas fa-trash-alt"></i></a>
-                            </div>`
+                                <a onClick="editSupplier('${row['idSupplier']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSupplier"><i class="fas fa-edit"></i></a>
+                                <a onClick="deleteSupplier('${row['idSupplier']}')" href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>
+                            </div>`;
                 }
             }
         ], 
         "columnDefs": [
             {
-                "targets": [0,1],
+                "targets": [0,3,5],
                 "className": 'text-center'
             },
             {

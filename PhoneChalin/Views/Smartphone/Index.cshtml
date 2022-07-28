@@ -50,7 +50,7 @@
 
 <!-- Modal Submit-->
 <div class="modal fade" id="addSmartphone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Data Smartphone</h5>
@@ -64,10 +64,10 @@
                     <div class="col mb-3">
                             <label for="idSupplier">Select Supplier</label>
                             <select class="form-control" id="idSupplier" required>
-                                <option>Pilih Supplier</option>
+
                             </select>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <div class="invalid-feedback">
+                            Supplier is required
                         </div>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                     <div class="col mb-3">
                             <label for="nameSmartphone">Name Smartphone</label>
                             <input type="text" class="form-control" id="nameSmartphone" name="nameSmartphone" placeholder="Name Smartphone" required>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <div class="invalid-feedback">
+                            Name smartphone is required
                         </div>
                     </div>
                 </div>
@@ -84,16 +84,20 @@
                     <div class="row p-2">
                         <div class="col-6 mb-3">
                             <label for="priceSmartphone">Price Smartphone</label>
-                            <input type="text" class="form-control" id="priceSmartphone" name="priceSmartphone" placeholder="Price Smartphone" required>
+                            <input type="text" class="form-control" id="priceSmartphone" name="priceSmartphone" placeholder="Price Smartphone" pattern="[0-9]+" required>
                             <div class="invalid-feedback">
-                                Please provide a valid city.
+                                Price smartphone contain numbers
+                                <br>
+                                Price smartphone is required
                             </div>
                         </div>
                             <div class="col-6 mb-3">
                                 <label for="stockSmartphoen">Stock Smartphone</label>
-                                <input type="text" class="form-control" id="stockSmartphoen" name="stockSmartphoen" placeholder="Stock Smartphone" required>
+                                <input type="text" class="form-control" id="stockSmartphoen" name="stockSmartphoen" placeholder="Stock Smartphone" pattern="[0-9]+" required>
                             <div class="invalid-feedback">
-                                Please provide a valid state.
+                                    Stock smartphone must contain numbers
+                                    <br>
+                                    Stock smartphone is rquired
                             </div>
                         </div>
                     </div>
@@ -109,8 +113,8 @@
 </div>
 
 <!-- Modal Edit -->
-<div class="modal fade" id="editSmartphone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="modaleditSmartphone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Data Smartphone</h5>
@@ -131,9 +135,9 @@
   </div>
 </div>
 
-<!-- Modal Submit-->
-<div class="modal fade" id="deleteSmartphone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- Modal Delete-->
+<div class="modal fade" id="modaldeleteSmartphone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Delete Data Smartphone</h5>
@@ -141,18 +145,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="modal-body">
-            <div class="form-group text-center" id="textDelete">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="deleteSmartphone">Delete</button>
+        <div id="textDelete">
+        
         </div>
     </div>
   </div>
 </div>
 
 @section Scripts{
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/smartphone.js" asp-append-version="true"></script>
 }
