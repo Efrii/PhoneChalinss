@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace PhoneChalin.Repositories.Interfaces
 {
@@ -8,10 +9,10 @@ namespace PhoneChalin.Repositories.Interfaces
         where  TModel : class
     {
         // GET
-        List<TModel> Get();
+        Task<List<TModel>> Get();
 
         // GET Using Paramenter By ID (Primary Key)
-        TModel Get(TPrimaryKey Id);
+        Task<TModel> Get(TPrimaryKey Id);
 
         // POST
         HttpStatusCode Post(TModel model);

@@ -5,7 +5,7 @@ namespace PhoneChalin.Repositories.Data
 {
     public class EmployeeRepository : GenericRepository<Employee, int>
     {
-        public EmployeeRepository() : base("/employee")
+        public EmployeeRepository() : base("employee/")
         {
 
         }

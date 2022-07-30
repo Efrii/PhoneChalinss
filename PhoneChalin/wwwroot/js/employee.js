@@ -71,9 +71,9 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            "url": "https://localhost:42573/api/Employee",
+            "url": "/employee/get",
             "dataType": "json",
-            "dataSrc": "data"
+            "dataSrc": ""
         },
         "columns": [
             {

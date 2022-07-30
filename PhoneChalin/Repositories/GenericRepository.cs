@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PhoneChalin.Models;
 using PhoneChalin.Repositories.Interfaces;
+
 namespace PhoneChalin.Repositories
 {
     public class GenericRepository<TModel, TPrimaryKey> : IGeneralRepository<TModel, TPrimaryKey>
@@ -25,22 +27,19 @@ namespace PhoneChalin.Repositories
             accessor = new HttpContextAccessor();
             client = new HttpClient();
             client.BaseAddress = baseAddress;
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessor.HttpContext.Session.GetString("Token"));
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessor.HttpContext.Session.GetString("Token"));
         }
 
         #region Get All Data
-        public List<TModel> Get()
+        public async Task<List<TModel>> Get()
         {
+            List<TModel> model = new List<TModel>();
 
-            List<TModel> model = null;
+            var responseTask = await client.GetAsync(request);
 
-            var responseTask = client.GetAsync(request);
-            responseTask.Wait();
-            var result = responseTask.Result;
-
-            if (result.IsSuccessStatusCode)
+            if (responseTask.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsStringAsync().Result;
+                var readTask = await responseTask.Content.ReadAsStringAsync();
                 var parsedObject = JObject.Parse(readTask);
                 var dataOnly = parsedObject["data"].ToString();
 
@@ -52,17 +51,15 @@ namespace PhoneChalin.Repositories
         #endregion Get All Data
 
         #region Get By Id
-        public TModel Get(TPrimaryKey Id)
+        public async Task<TModel> Get(TPrimaryKey Id)
         {
             TModel model = null;
 
-            var responseTask = client.GetAsync(request + Id.ToString());
-            responseTask.Wait();
+            var responseTask = await client.GetAsync(request + Id.ToString());
 
-            var result = responseTask.Result;
-            if (result.IsSuccessStatusCode)
+            if (responseTask.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsStringAsync().Result;
+                var readTask = responseTask.Content.ReadAsStringAsync().Result;
                 var parsedObject = JObject.Parse(readTask);
                 var dataOnly = parsedObject["data"].ToString();
 

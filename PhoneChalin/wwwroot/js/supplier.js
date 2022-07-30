@@ -7,13 +7,13 @@
 function deleteSupplier(idSupplier) {
     // GET DETAIL Supplier
     $.ajax({
-        url: "https://localhost:42573/api/Supplier/"+idSupplier,
+        url: "/supplier/get/"+idSupplier,
         method: "GET",
     }).done((result) => {
         // Using Swal for delete
         Swal.fire({
             title: 'Are you sure?',
-            html: "You want to delete the data supplier <strong>" + result.data.nameSupplier +"</strong>",
+            html: "You want to delete the data supplier <strong>" + result.nameSupplier +"</strong>",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -27,7 +27,7 @@ function deleteSupplier(idSupplier) {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Supplier/"+idSupplier,
+                    url: "/supplier/delete/"+idSupplier,
                     type: "DELETE",
                     dataType: "json",
                     success: function(){
@@ -54,10 +54,10 @@ function deleteSupplier(idSupplier) {
 
 function editSupplier(idSupplier){
     $.ajax({
-        url: "https://localhost:42573/api/Supplier/"+idSupplier,
+        url: "/supplier/get/"+idSupplier,
         type: "GET",
     }).done((result) => {
-        let val = result.data;
+        let val = result;
         let text = `
                 <input type="text" class="form-control" name="idSupplier" id="idSuppliers" placeholder="Brand Supplier" required value="${val.idSupplier}" hidden disabled>
                 <div class="form-group">
@@ -118,7 +118,7 @@ $(document).ready(function () {
                 event.preventDefault();
                 
                 let obj = {};
-                obj.idSupplier = $("#idSuppliers").val();
+                obj.idSupplier = parseInt($("#idSuppliers").val());
                 obj.brandSupplier = $("#brandSuppliers").val();
                 obj.nameSupplier = $("#nameSuppliers").val();
                 obj.phone = $("#phones").val();
@@ -132,7 +132,7 @@ $(document).ready(function () {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Supplier",
+                    url: "/supplier/edit",
                     type: "PUT",
                     dataType: "json",
                     data: JSON.stringify(obj),
@@ -183,7 +183,7 @@ $(document).ready(function () {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Supplier",
+                    url: "/supplier/add",
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify(obj),
@@ -285,9 +285,9 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            "url": "https://localhost:42573/api/Supplier",
+            "url": "/supplier/get",
             "dataType": "json",
-            "dataSrc": "data"
+            "dataSrc": ""
         },
         "columns": [
             {
@@ -312,7 +312,7 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a onClick="editSupplier('${row['idSupplier']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSupplier"><i class="fas fa-edit"></i></a>
+                                <a onClick="editSupplier('${row['idSupplier']}')" href="#" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSupplier"><i class="fas fa-edit"></i></a>
                                 <a onClick="deleteSupplier('${row['idSupplier']}')" href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>
                             </div>`;
                 }

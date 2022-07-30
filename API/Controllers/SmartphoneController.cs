@@ -26,7 +26,6 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-        [AllowAnonymous]
         [Route("Getall")]
         [HttpGet]
         public ActionResult<List<Smartphone>> GetAll()

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     [EnableCors]
     public class EmployeeController : BaseController<Employee, EmployeeRepository, int>
     {

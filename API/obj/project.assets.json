@@ -5907,7 +5907,7 @@
       "outputPath": "/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/chalindev/.config/NuGet/NuGet.Config"
+        "/Users/chalindev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

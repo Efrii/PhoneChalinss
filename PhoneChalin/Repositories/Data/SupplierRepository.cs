@@ -9,7 +9,7 @@ namespace PhoneChalin.Repositories.Data
 {
     public class SupplierRepository : GenericRepository<Supplier, int>
     {
-        public SupplierRepository() : base("supplier/")
+        public SupplierRepository() : base("Supplier/")
         {
 
         }

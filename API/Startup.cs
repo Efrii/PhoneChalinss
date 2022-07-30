@@ -51,13 +51,7 @@ namespace API
             //Cors Origin
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("https://localhost:42573", "http://localhost:59315")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
-                    });
+                options.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
             // USE SWAGER
@@ -94,6 +88,11 @@ namespace API
                  .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,13 +108,7 @@ namespace API
             app.UseRouting();
 
             // UseCors with CorsPolicyBuilder.
-            app.UseCors(builder =>
-            {
-                builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            });
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             // Add authen and author
             app.UseAuthentication();

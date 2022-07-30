@@ -4,7 +4,7 @@ $(document).ready(function() {
     Chart.defaults.global.defaultFontColor = '#858796';
 
     $.ajax({
-        'url': "https://localhost:42573/api/Employee",
+        'url': "/employee/get",
         'method': "GET",
         'contentType': 'application/json'
     }).done(function (result) {
@@ -12,12 +12,12 @@ $(document).ready(function() {
         let laki = [];
         let cewek = [];
         
-        for(let i = 0; i < result.data.length; i++){
-            let data = result.data[i].genderEmployee == "L";
+        for(let i = 0; i < result.length; i++){
+            let data = result[i].genderEmployee == "L";
             if(data == true){
-                laki.push(result.data[i])
+                laki.push(result[i])
             } else{
-                cewek.push(result.data[i])
+                cewek.push(result[i])
             }
         }
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        'url': "https://localhost:42573/api/Smartphone/Getall",
+        'url': "/smartphone/getall",
         'method': "GET",
         'contentType': 'application/json'
     }).done(function (result) {
@@ -70,7 +70,7 @@ $(document).ready(function() {
         let arrayName = [];
         let arraySum = [];
         let arrayColor = [];
-        let data = result.data;
+        let data = result;
         
         $(data).each(function(key,val){
             let same = val.supplierModel.nameSupplier;

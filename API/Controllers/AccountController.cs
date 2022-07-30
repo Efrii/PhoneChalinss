@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using API.Models;
 using API.Repositories.Data;
+using API.Services;
 using API.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -35,38 +36,21 @@ namespace API.Controllers
 
         [Route("Login")]
         [HttpPost]
+        [EnableCors]
         [AllowAnonymous]
-        public ActionResult Post([FromBody] Login login)
+        public ActionResult Post(User user)
         {
-            var result = accountRepository.GetLogin(login.Username, login.Password);
-            var claims = new List<Claim>();
-
+            var result = accountRepository.GetLogin(user.Username, user.Password);
+            var jwt = new JwtService(config);
             if (result != null)
             {
-                claims.Add(new Claim("Id", result.Id.ToString()));
-                claims.Add(new Claim("Username", result.Username));
+                var idToken = jwt.GenerateSecurityToken(result);
 
-                foreach (var item in result.UserRoles)
-                {
-                    claims.Add(new Claim("roles", item.Role.RoleEmployee));
-                }
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtConfig:secret"]));
-                var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(
-                    config["JwtConfig:Issuer"],
-                    config["JwtConfig:Audience"],
-                    claims,
-                    expires: DateTime.UtcNow.AddMinutes(60),
-                    signingCredentials: signIn
-                    );
-                var idToken = new JwtSecurityTokenHandler().WriteToken(token);
-
-                return Ok(new { status = 200, data = result, token = idToken });
+                return Ok(new { status = 200, data = result, token = idToken});
 
             } else
             {
-                return BadRequest(new { status = 400, message = "Request is invalid" });
+                return BadRequest(new { status = 400, message = "Username or Password is invalid" });
             }
         }
 

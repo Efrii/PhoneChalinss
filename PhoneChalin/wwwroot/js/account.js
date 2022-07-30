@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  var forms = document.getElementsByClassName('needs-validation');
+
+    var forms = document.getElementsByClassName('needs-validation');
     var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
             if (form.checkValidity() === false) {
@@ -7,41 +8,57 @@ $(document).ready(function () {
             event.stopPropagation();
             } else{
 
-              event.preventDefault();
+                event.preventDefault();
 
-              let payLoad = JSON.stringify({
+                let payLoad = JSON.stringify({
                 username: $("#username").val(),
                 password: $("#password").val()
-              });
+                });
 
-              console.log(payLoad)
+                console.log(payLoad)
 
-              $.ajax({
-                  headers: {
+                $.ajax({
+                    headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                  },
-                  type: "POST",
-                  url: "https://localhost:42573/api/Account/Login",
-                  data: payLoad,
-                  dataType: "json",
-                  success: function(result) {
-                      localStorage.setItem('Token', result.token);
-                      sessionStorage.setItem('key', result.token);
-                      console.log(localStorage.getItem('Token'));
-                      console.log(sessionStorage.getItem('key'));
-                      window.location = "https://localhost:5001/Smartphone/Index";
                     },
-                  error: function(errormessage) {
-                    console.log(errormessage)
-
-                    let message = errormessage.responseJSON.message;
-
-                    $("#messageError").html(message);
-                  }
-              });
+                    url: "/Account/Auth",
+                    type: "POST",
+                    data: payLoad,
+                    dataType: "json",
+                    beforeSend: function (request) {
+                        request.setRequestHeader("RequestVerificationToken", $("[name='__RequestVerificationToken']").val());
+                    },
+                    // beforeSend: function(){
+                    //   let loading = `
+                    //     <div class="spinner-border" role="status">
+                    //       <span class="sr-only">Loading...</span>
+                    //     </div>
+                    //   `;
+                    //   $("#messageError").html(loading);
+                    // },
+                }).done((result) => {
+                    console.log(result);
+                    if(result.status == 200){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'login success',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(function () {
+                            window.location = "/smartphone";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Gagal',
+                            text: 'Username or Password is invalid',
+                        })
+                    }
+                });
             }
             form.classList.add('was-validated');
         }, false);
     });
-})
+    
+});

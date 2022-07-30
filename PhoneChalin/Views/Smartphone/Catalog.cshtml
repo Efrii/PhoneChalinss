@@ -10,7 +10,11 @@
 <div class="text-center">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 </div>
-
+<p>@Context.Session.GetString("Id")</p>
+<p>@Context.Session.GetString("Username")</p>
+<p>@Context.Session.GetString("Email")</p>
+<p>@Context.Session.GetString("Token")</p>
+<p>@Context.Session.GetString("Role")</p>
 <div class="row">
     @foreach (var item in Model)
     {

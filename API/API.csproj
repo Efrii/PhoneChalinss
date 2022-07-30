@@ -27,6 +27,7 @@
     <None Remove="ViewModels\" />
     <None Remove="Service\" />
     <None Remove="Microsoft.AspNetCore.Cors" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -37,6 +38,7 @@
     <Folder Include="Base\" />
     <Folder Include="Middleware\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />

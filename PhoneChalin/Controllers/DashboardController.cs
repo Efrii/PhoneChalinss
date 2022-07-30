@@ -10,7 +10,6 @@ namespace PhoneChalin.Controllers
 {
     public class DashboardController : Controller
     {
-        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();

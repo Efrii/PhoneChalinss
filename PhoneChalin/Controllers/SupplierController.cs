@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PhoneChalin.Base;
 using PhoneChalin.Models;
 using PhoneChalin.Repositories.Data;
 
@@ -11,103 +13,21 @@ using PhoneChalin.Repositories.Data;
 
 namespace PhoneChalin.Controllers
 {
-    public class SupplierController : Controller
+    [Authorize(Roles = "Staff")]
+    public class SupplierController : BaseController<Supplier, SupplierRepository, int>
     {
-        SupplierRepository supplierRepository;
+        SupplierRepository Repository;
 
-        public SupplierController(SupplierRepository supplierRepository)
+        public SupplierController(SupplierRepository repository) : base(repository)
         {
-            this.supplierRepository = supplierRepository;
+            this.Repository = repository;
         }
 
-        #region Get
         [HttpGet]
-        public IActionResult Index()
-        {
-            var buyers = supplierRepository.Get();
-
-            if (buyers != null)
-            {
-                ViewData["Supplier/Index"] = "Supplier/Index";
-                return View(buyers);
-            }
-            return RedirectToAction("Catalog", "Smartphone");
-        }
-        #endregion Get
-
-        #region Create
-        [HttpGet]
-        public IActionResult Create()
+        public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Supplier suppliers)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = supplierRepository.Post(suppliers);
-                if (result > 0)
-                    return RedirectToAction("Index", "Supplier");
-                return View();
-            }
-
-            return View();
-        }
-        #endregion Create
-
-        #region Edit
-        [HttpGet("/supplier/edit/{Id}")]
-        public IActionResult Edit(int Id)
-        {
-            var suppliers = supplierRepository.Get(Id);
-            if (suppliers != null)
-            {
-                return View(suppliers);
-            }
-            return RedirectToAction("Index", "Supplier");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Supplier suppliers)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = supplierRepository.Put(suppliers);
-                if (result > 0)
-                    return RedirectToAction("Index", "Supplier");
-                return View();
-            }
-
-            return RedirectToAction("Index", "Supplier");
-        }
-
-        #endregion Edit
-
-        #region Delete
-        [HttpGet("/supplier/detail/{Id}")]
-        public IActionResult Delete(int Id)
-        {
-            var suppliers = supplierRepository.Get(Id);
-            if (suppliers != null)
-            {
-                return View(suppliers);
-            }
-            return RedirectToAction("Index", "Supplier");
-        }
-
-        [HttpGet("/supplier/delete/{Id}")]
-        public IActionResult DeleteAction(int Id)
-        {
-            var result = supplierRepository.Delete(Id);
-            if (result > 0)
-                return RedirectToAction("Index", "Supplier");
-            return View();
-        }
-
-        #endregion Delete
     }
 }

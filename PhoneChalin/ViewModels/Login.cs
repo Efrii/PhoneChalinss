@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using PhoneChalin.Models;
+using API.Models;
 
 namespace PhoneChalin.ViewModels
 {
     public class Login
     {
-        //public int status { get; set; }
+        public int id { get; set; }
 
         [Required(ErrorMessage = "Usernamer is required")]
         [MinLength(5, ErrorMessage = "Usernamer cannot be less than 5 characters")]
@@ -19,6 +19,10 @@ namespace PhoneChalin.ViewModels
         [StringLength(12)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public string email { get; set; }
+
+        public List<UserRole> UserRoles { get; set; }
 
         //public Employee employee { get; set; }
 

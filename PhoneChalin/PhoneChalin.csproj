@@ -8,11 +8,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Web|AnyCPU' ">
-    <IntermediateOutputPath>obj\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</IntermediateOutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</OutputPath>
+    <OutputPath>bin\Web\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1\netcoreapp3.1</OutputPath>
     <DefineConstants></DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
@@ -36,6 +36,8 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="Views\Dashboard\" />
     <None Remove="Views\Employee\" />
+    <None Remove="Base\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
@@ -51,6 +53,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Smartphone\" />
@@ -63,5 +66,11 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Employee\" />
+    <Folder Include="Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

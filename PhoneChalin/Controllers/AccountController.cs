@@ -11,6 +11,10 @@ using PhoneChalin.ViewModels;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using API.Middleware;
+using API.Services;
+using API.Models;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,12 +23,14 @@ namespace PhoneChalin.Controllers
     public class AccountController : Controller
     {
         AccountRepository accountRepository;
+        IConfiguration config;
         Uri baseAddress = new Uri("https://localhost:42573/api/");
         HttpClient client;
 
-        public AccountController(AccountRepository accountRepository)
+        public AccountController(AccountRepository accountRepository, IConfiguration config)
         {
             this.accountRepository = accountRepository;
+            this.config = config;
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
@@ -37,30 +43,56 @@ namespace PhoneChalin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(Login login)
+        public JsonResult Auth([FromBody] User login)
         {
-            if (ModelState.IsValid)
+            var postTask = client.PostAsJsonAsync<User>("Account/Login", login);
+            postTask.Wait();
+
+            //var jwt = new JwtService(config);
+            var result = postTask.Result;
+
+            if (result.IsSuccessStatusCode)
             {
-                var postTask = client.PostAsJsonAsync<Login>("Account/Login", login);
-                postTask.Wait();
+                var readTask = result.Content.ReadAsStringAsync().Result;
+                var parsedObject = JObject.Parse(readTask);
+                var token = parsedObject["token"].ToString();
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                var d = parsedObject["data"].ToString();
+                var datas = JsonConvert.DeserializeObject<User>(d);
+                //var idToken = jwt.GenerateSecurityToken(datas);
+
+                List<RoleVM> userRole = new List<RoleVM>();
+                foreach (var item in datas.UserRoles)
                 {
-                    var readTask = result.Content.ReadAsStringAsync().Result;
-                    var parsedObject = JObject.Parse(readTask);
-                    var dataOnly = parsedObject["token"].ToString();
+                    RoleVM role = new RoleVM()
+                    {
+                        RoleEmployee = item.Role.RoleEmployee
+                    };
 
-                    HttpContext.Session.SetString("Token", dataOnly);
-
-                    return RedirectToAction("Index", "Dashboard");
-                } else
-                {
-                    TempData["loginInvalid"] = "Login Failed";
-                    return View();
+                    userRole.Add(role);
+                    HttpContext.Session.SetString("Role", item.Role.RoleEmployee);
                 }
+
+                HttpContext.Session.SetString("Id", datas.Id.ToString());
+                HttpContext.Session.SetString("Username", datas.Username);
+                HttpContext.Session.SetString("Email", datas.Email);
+                HttpContext.Session.SetString("Token", token);
+
+                return Json(new {
+                    status = result.StatusCode,
+                    data = new {
+                        id = datas.Id,
+                        username = datas.Username,
+                        email = datas.Email,
+                        role = userRole },
+                    token = token
+                });
+
+            } else
+            {
+                return Json(new { status = result.StatusCode, message = result.RequestMessage});
             }
-            return View();
+            
         }
 
         [HttpGet]

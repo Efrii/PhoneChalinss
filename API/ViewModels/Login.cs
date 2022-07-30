@@ -7,6 +7,8 @@ namespace API.ViewModels
 {
     public class Login
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Usernamer is required")]
         [MinLength(5, ErrorMessage = "Usernamer cannot be less than 5 characters")]
         [StringLength(12)]
@@ -17,5 +19,7 @@ namespace API.ViewModels
         [StringLength(12)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public List<Role> Roles = new List<Role>();
     }
 }

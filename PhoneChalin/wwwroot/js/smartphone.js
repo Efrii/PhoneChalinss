@@ -13,13 +13,13 @@ function formatRupiah(money) {
 function deleteSmartphone(idSmartphone) {
     // GET DETAIL SMARTPHONE
     $.ajax({
-        url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
+        url: "/smartphone/get/"+idSmartphone,
         method: "GET",
     }).done((result) => {
         // Using Swal for delete
         Swal.fire({
             title: 'Are you sure?',
-            text: "You want to delete the data " + result.data.nameSmartphone,
+            text: "You want to delete the data " + result.nameSmartphone,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -33,7 +33,7 @@ function deleteSmartphone(idSmartphone) {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
+                    url: "/smartphone/delete/"+idSmartphone,
                     type: "DELETE",
                     dataType: "json",
                     success: function(){
@@ -64,10 +64,10 @@ function editSmartphone(idSmartphone){
     let arraySup;
 
     $.ajax({
-        url: "https://localhost:42573/api/Smartphone/"+idSmartphone,
+        url: "/Smartphone/get/"+idSmartphone,
         method: "GET",
     }).done((result) => {
-        let val = result.data;
+        let val = result;
         arraySup = val.idSupplier;
         let text = `
             <input type="text" class="form-control" id="idSmartphone" name="idSmartphone" placeholder="Name Smartphone" value="${val.idSmartphone}" required hidden disabled>
@@ -119,11 +119,11 @@ function editSmartphone(idSmartphone){
 
         // GET SUPPLIER
         $.ajax({
-            url: "https://localhost:42573/api/Supplier",
+            url: "/supplier/get",
             method: "GET",
         }).done((result) => {
             let text = '<option value="">Pilih Supplier</option>';
-            $.each(result.data, function (key, isi){
+            $.each(result, function (key, isi){
                 text += '<option value="'+isi.idSupplier+'">'+isi.nameSupplier+'</option>'
             });
 
@@ -158,11 +158,11 @@ $(document).ready(function () {
                 event.preventDefault();
                 
                 let obj = {};
-                obj.idSmartphone = $("#idSmartphone").val();
-                obj.idSupplier = $("#idSuppliers").val();
+                obj.idSmartphone = parseInt($("#idSmartphone").val());
+                obj.idSupplier = parseInt($("#idSuppliers").val());
                 obj.nameSmartphone = $("#nameSmartphones").val();
-                obj.priceSmartphone = $("#priceSmartphones").val();
-                obj.stockSmartphoen = $("#stockSmartphoens").val();
+                obj.priceSmartphone = parseInt($("#priceSmartphones").val());
+                obj.stockSmartphoen = parseInt($("#stockSmartphoens").val());
 
                 console.log(obj);
 
@@ -172,7 +172,7 @@ $(document).ready(function () {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Smartphone",
+                    url: "/Smartphone/edit",
                     type: "PUT",
                     dataType: "json",
                     data: JSON.stringify(obj),
@@ -200,11 +200,11 @@ $(document).ready(function () {
 
     // GET SUPPLIER
     $.ajax({
-        url: "https://localhost:42573/api/Supplier",
+        url: "/Supplier/get",
         method: "GET",
     }).done((result) => {
         let text = '<option value="">Pilih Supplier</option>';
-        $.each(result.data, function (key, val){
+        $.each(result, function (key, val){
             text += '<option value="'+val.idSupplier+'">'+val.nameSupplier+'</option>'
         });
 
@@ -223,10 +223,10 @@ $(document).ready(function () {
                 event.preventDefault();
 
                 let obj = {};
-                obj.idSupplier = $("#idSupplier").val();
+                obj.idSupplier = parseInt($("#idSupplier").val());
                 obj.nameSmartphone = $("#nameSmartphone").val();
-                obj.priceSmartphone = $("#priceSmartphone").val();
-                obj.stockSmartphoen = $("#stockSmartphoen").val();
+                obj.priceSmartphone = parseInt($("#priceSmartphone").val());
+                obj.stockSmartphoen = parseInt($("#stockSmartphoen").val());
 
                 console.log(obj);
 
@@ -236,7 +236,7 @@ $(document).ready(function () {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json' 
                     },
-                    url: "https://localhost:42573/api/Smartphone",
+                    url: "/Smartphone/add",
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify(obj),
@@ -337,9 +337,9 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            "url": "https://localhost:42573/api/Smartphone/Getall",
+            "url": "/smartphone/getall",
             "dataType": "json",
-            "dataSrc": "data"
+            "dataSrc": ""
         },
         "columns": [
             {
@@ -367,7 +367,7 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     return `<div class="text-center">
-                                <a onClick="editSmartphone('${row['idSmartphone']}')" href="" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSmartphone"><i class="fas fa-edit"></i></a>
+                                <a onClick="editSmartphone('${row['idSmartphone']}')" href="#" class="btn btn-primary" data-toggle="modal" data-target="#modaleditSmartphone"><i class="fas fa-edit"></i></a>
                                 <a onClick="deleteSmartphone('${row['idSmartphone']}')" href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>
                             </div>`
                 }
