@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneChalin.Base;
 using PhoneChalin.Models;
@@ -11,6 +12,7 @@ using PhoneChalin.Repositories.Data;
 
 namespace PhoneChalin.Controllers
 {
+    [Authorize(Roles = "Manajer")]
     public class EmployeeController : BaseController<Employee, EmployeeRepository, int>
     {
         EmployeeRepository EmployeeRepository;

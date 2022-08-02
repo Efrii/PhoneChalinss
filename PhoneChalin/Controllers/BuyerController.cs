@@ -12,11 +12,13 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PhoneChalin.Base;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PhoneChalin.Controllers
 {
+    [Authorize(Roles = "Staff")]
     public class BuyerController : BaseController<Buyer, BuyerRepository, int>
     {
         BuyerRepository buyerRepository;

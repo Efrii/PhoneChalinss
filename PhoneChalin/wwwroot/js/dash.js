@@ -90,6 +90,7 @@ $(document).ready(function() {
 
         console.log(arrayColor);
 
+        // add chart bar vertical
         var ctx = document.getElementById("myAreaChart");
         var myBarChart = new Chart(ctx, {
         type: 'bar',
@@ -157,6 +158,7 @@ $(document).ready(function() {
           }
         });  
        
+        // Add chart horizontal
         var ctx = document.getElementById("stockSmartphone");
         var myPieChart = new Chart(ctx, {
         type: 'horizontalBar',

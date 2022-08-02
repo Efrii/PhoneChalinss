@@ -38,6 +38,6 @@ namespace PhoneChalin.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public List<int> UserRoles { get; set; }
+        //public List<int> UserRoles { get; set; }
     }
 }

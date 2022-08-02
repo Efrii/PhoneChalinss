@@ -120,7 +120,6 @@
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/PhoneChalin.RazorCoreGenerate.cache
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Account/Index.cshtml.g.cs
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Account/Login.cshtml.g.cs
-/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Account/Register.cshtml.g.cs
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Buyer/Create.cshtml.g.cs
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Buyer/Delete.cshtml.g.cs
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Buyer/Edit.cshtml.g.cs
@@ -169,3 +168,6 @@
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/bin/Debug/netcoreapp3.1/API.dll
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/bin/Debug/netcoreapp3.1/API.pdb
 /Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/PhoneChalin.MvcApplicationPartsAssemblyInfo.cs
+/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Dashboard/Notfound.cshtml.g.cs
+/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Dashboard/Unauthorized.cshtml.g.cs
+/Volumes/DATA Dev/METRODATA CODING CAMP /PhoneChalinss/PhoneChalin/obj/Debug/netcoreapp3.1/Razor/Views/Dashboard/Forbidden.cshtml.g.cs

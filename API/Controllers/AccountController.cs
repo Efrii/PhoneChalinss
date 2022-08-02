@@ -41,16 +41,38 @@ namespace API.Controllers
         public ActionResult Post(User user)
         {
             var result = accountRepository.GetLogin(user.Username, user.Password);
-            var jwt = new JwtService(config);
+            //var jwt = new JwtService(config);
             if (result != null)
             {
-                var idToken = jwt.GenerateSecurityToken(result);
+                //var idToken = jwt.GenerateSecurityToken(result);
 
-                return Ok(new { status = 200, data = result, token = idToken});
+                //return Ok(new { status = 200, data = result, token = idToken});
+                return Ok(new { status = 200, data = result});
 
             } else
             {
                 return BadRequest(new { status = 400, message = "Username or Password is invalid" });
+            }
+        }
+
+        [Route("Register")]
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult<int> Register(Register register)
+        {
+            var result = accountRepository.Register(register);
+
+            if (result == 1)
+            {
+                return Ok(new { status = 200, data = result });
+            }
+            else if (result == 2)
+            {
+                return Conflict(new { status = 409, message = "Email Sudah Digunakan"});
+            }
+            else
+            {
+                return BadRequest(new { status = 400, message = "Request is invalid" });
             }
         }
 
@@ -67,25 +89,25 @@ namespace API.Controllers
                 return BadRequest(new { status = 400, message = "Request is invalid" });
         }
 
-        [Route("Register")]
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult<int> Register(Register register)
-        {
-            var result = accountRepository.Register(register);
-
-            if (result > 0)
-                return Ok(new { status = 200, data = result });
-            else
-                return BadRequest(new { status = 400, message = "Request is invalid"});
-        }
-
         [Route("ForgetPassword")]
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult<int> ForgetPassword(User user)
+        public ActionResult<int> ForgetPassword(Register register)
         {
-            return BadRequest();
+            var result = accountRepository.ResetPassword(register);
+
+            if (result > 1)
+            {
+                return Ok(new { status = 200, data = result });
+            }
+            else if (result == 2)
+            {
+                return Conflict(new { status = 409, message = "Email Sudah Digunakan" });
+            }
+            else
+            {
+                return BadRequest(new { status = 400, message = "Request is invalid" });
+            }
         }
     }
 }

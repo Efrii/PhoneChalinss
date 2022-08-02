@@ -27,7 +27,7 @@ namespace PhoneChalin.Repositories
             accessor = new HttpContextAccessor();
             client = new HttpClient();
             client.BaseAddress = baseAddress;
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessor.HttpContext.Session.GetString("Token"));
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessor.HttpContext.Session.GetString("Token"));
         }
 
         #region Get All Data

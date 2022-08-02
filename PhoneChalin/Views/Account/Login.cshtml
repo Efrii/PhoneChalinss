@@ -85,50 +85,47 @@
                             <button type="submit" id="submit" class="btn btn-info btn-lg btn-block">Login</button>
                         </div>
                     </form>
-                    <p class="text-right mt-2">Forget <a href="#">Password ?</a></p>
-                    <p class="text-center mt-3">Don't have an account ? <a href="#" data-toggle="modal" data-target="#register">Register</a></p>
+                    <p class="text-right mt-2">Forget <a href="#" data-toggle="modal" data-target="#resetPassword">Password ?</a></p>
+                    <p class="text-center mt-3">Don't have an account ? <a href="#" data-toggle="modal" data-target="#registerModal">Register</a></p>
                     <p class="text-center mt-3">Back to main <a asp-controller="Smartphone" asp-action="Index">Menu</a></p>
                 </div>
             </div>
 
-            <!-- Modal Submit -->
-            <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="addSupplierLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+            <!-- Modal Register -->
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="text-center register">
-                            <h5 class="modal-title" id="addSupplierLabel">Resister Account</h5>
+                            <h5 class="modal-title" id="registerModal">Resister Account</h5>
                         </div>
-                        <form class="needs-validation-add" novalidate>
+                        <form action="/Account/Register" method="post" class="needs-validation-register" novalidate>
+                            @Html.AntiForgeryToken()
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="col mb-3">
-                                        <label for="nameEmployee">Name Employee</label>
-                                        <input type="text" class="form-control" name="nameEmployee" id="nameEmployee" placeholder="Name Employee" required>
-                                        <div class="invalid-feedback">
-                                            Name buyer is required
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col mb-3">
+                                <div class="form-row">
+                                    <div class="col-6 mb-3">
                                         <label for="nipEmployee">NIP Employee</label>
-                                        <input type="text" class="form-control" name="nipEmployee" id="nipEmployee" placeholder="Nip Employee" required>
+                                        <input type="text" class="form-control" name="nipEmployee" id="nipEmployee" placeholder="Nip Employee" minlength="5" required>
+                                        <div class="invalid-feedback">
+                                            Name buyer is required
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameEmployee">Name Employee</label>
+                                        <input type="text" class="form-control" name="nameEmployee" id="nameEmployee" placeholder="Name Employee" minlength="5" required>
                                         <div class="invalid-feedback">
                                             Name buyer is required
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col mb-3">
+                                <div class="form-row">
+                                    <div class="col-4 mb-3">
                                         <label for="ageEmployee">AGE Employee</label>
-                                        <input type="text" class="form-control" name="ageEmployee" id="ageEmployee" placeholder="Age Employee" required>
+                                        <input type="text" class="form-control" name="ageEmployee" id="ageEmployee" placeholder="Age Employee" minlength="1" maxlength="3" required>
                                         <div class="invalid-feedback">
                                             Name employee is required
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col mb-3">
+                                    <div class="col-4 mb-3">
                                         <label for="genderEmployee">Gender Employee</label>
                                         <select class="form-control" name="genderEmployee" id="genderEmployee" required>
                                             <option value="">Pilih Gender</option>
@@ -139,11 +136,73 @@
                                             Gender employee is required
                                         </div>
                                     </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="statusEmployee">Status Employee</label>
+                                        <select class="form-control" name="statusEmployee" id="statusEmployee" required>
+                                            <option value="">Pilih Status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Gender employee is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-4 mb-3">
+                                        <label for="username">Username Employee</label>
+                                        <input type="text" class="form-control" name="username" id="usernames" placeholder="Username" minlength="5" required>
+                                        <div class="invalid-feedback">
+                                            Username employee is required
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="email">Email Employee</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email Employee" required>
+                                        <div class="invalid-feedback">
+                                            Email employee is required
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="password">Password</label>
+                                        <input type="text" class="form-control" name="password" id="passwords" placeholder="Password" minlength="8" maxlength="12" required>
+                                        <div class="invalid-feedback">
+                                            Password employee is required
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" id="submitBuyer">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="submits">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="resetPassword" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="text-center register">
+                            <h5 class="modal-title" id="resetPassword">Reset Password</h5>
+                        </div>
+                        <form action="/Account/Register" method="post" class="needs-validation-register" novalidate>
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="email">Email Employee</label>
+                                        <input type="email" class="form-control" name="email" id="emails" placeholder="Email" required>
+                                        <div class="invalid-feedback">
+                                            Email employee is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="submits">Submit</button>
                             </div>
                         </form>
                     </div>

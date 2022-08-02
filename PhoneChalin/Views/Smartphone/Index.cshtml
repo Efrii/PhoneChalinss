@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col">
 
-        <button class="btn btn-primary mb-4" data-toggle="modal" data-target="#addSmartphone"><i class="fas fa-plus-circle"></i> Data Smartphone</button>
+        <button class="btn btn-primary mb-4" data-toggle="modal" id="addSmartphones" data-target="#addSmartphone"><i class="fas fa-plus-circle"></i> Data Smartphone</button>
 
         <div class="text-center">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -58,56 +58,56 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form class="needs-validation" novalidate>
-            <div class="modal-body">
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="idSupplier">Select Supplier</label>
-                            <select class="form-control" id="idSupplier" required>
-
-                            </select>
-                        <div class="invalid-feedback">
-                            Supplier is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="nameSmartphone">Name Smartphone</label>
-                            <input type="text" class="form-control" id="nameSmartphone" name="nameSmartphone" placeholder="Name Smartphone" required>
-                        <div class="invalid-feedback">
-                            Name smartphone is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row p-2">
-                        <div class="col-6 mb-3">
-                            <label for="priceSmartphone">Price Smartphone</label>
-                            <input type="text" class="form-control" id="priceSmartphone" name="priceSmartphone" placeholder="Price Smartphone" pattern="[0-9]+" required>
-                            <div class="invalid-feedback">
-                                Price smartphone contain numbers
-                                <br>
-                                Price smartphone is required
-                            </div>
-                        </div>
-                            <div class="col-6 mb-3">
-                                <label for="stockSmartphoen">Stock Smartphone</label>
-                                <input type="text" class="form-control" id="stockSmartphoen" name="stockSmartphoen" placeholder="Stock Smartphone" pattern="[0-9]+" required>
-                            <div class="invalid-feedback">
-                                    Stock smartphone must contain numbers
-                                    <br>
-                                    Stock smartphone is rquired
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" id="submitSmartphone" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+      <form class="needs-validation" novalidate>
+          @Html.AntiForgeryToken()
+          <div class="modal-body">
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="idSupplier">Select Supplier</label>
+                      <select class="form-control" id="idSupplier" required>
+                      </select>
+                      <div class="invalid-feedback">
+                          Supplier is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="nameSmartphone">Name Smartphone</label>
+                      <input type="text" class="form-control" id="nameSmartphone" name="nameSmartphone" placeholder="Name Smartphone" required>
+                      <div class="invalid-feedback">
+                          Name smartphone is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="row p-2">
+                      <div class="col-6 mb-3">
+                          <label for="priceSmartphone">Price Smartphone</label>
+                          <input type="text" class="form-control" id="priceSmartphone" name="priceSmartphone" placeholder="Price Smartphone" pattern="[0-9]+" required>
+                          <div class="invalid-feedback">
+                              Price smartphone contain numbers
+                              <br>
+                              Price smartphone is required
+                          </div>
+                      </div>
+                      <div class="col-6 mb-3">
+                          <label for="stockSmartphoen">Stock Smartphone</label>
+                          <input type="text" class="form-control" id="stockSmartphoen" name="stockSmartphoen" placeholder="Stock Smartphone" pattern="[0-9]+" required>
+                          <div class="invalid-feedback">
+                              Stock smartphone must contain numbers
+                              <br>
+                              Stock smartphone is rquired
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" id="submitSmartphone" class="btn btn-primary">Submit</button>
+          </div>
+      </form>
     </div>
   </div>
 </div>

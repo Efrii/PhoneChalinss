@@ -14,5 +14,29 @@ namespace PhoneChalin.Controllers
         {
             return View();
         }
+
+        [Route("/404")]
+        public ActionResult Notfound()
+        {
+            return View();
+        }
+
+        [Route("/401")]
+        public new IActionResult Unauthorized()
+        {
+            return View();
+        }
+
+        [Route("/400")]
+        public IActionResult Badrequest()
+        {
+            return View();
+        }
+
+        [Route("/403")]
+        public IActionResult Forbidden()
+        {
+            return View();
+        }
     }
 }

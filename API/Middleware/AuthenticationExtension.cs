@@ -14,6 +14,7 @@ namespace API.Middleware
             var secret = config.GetSection("JwtConfig").GetSection("secret").Value;
 
             var key = Encoding.ASCII.GetBytes(secret);
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

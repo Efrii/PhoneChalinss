@@ -55,6 +55,12 @@ function deleteSmartphone(idSmartphone) {
                 });
             }
         });
+    }).fail(() => {
+        Swal.fire({
+            title : '401',
+            text : 'Unauthorized',
+            icon : 'error'
+        })
     });
 }
 
@@ -68,6 +74,7 @@ function editSmartphone(idSmartphone){
         method: "GET",
     }).done((result) => {
         let val = result;
+        console.log(result);
         arraySup = val.idSupplier;
         let text = `
             <input type="text" class="form-control" id="idSmartphone" name="idSmartphone" placeholder="Name Smartphone" value="${val.idSmartphone}" required hidden disabled>
@@ -139,7 +146,14 @@ function editSmartphone(idSmartphone){
                 }
             }
         });
-
+    }).fail(() => {
+        Swal.fire({
+            title : '401',
+            text : 'Unauthorized',
+            icon : 'error'
+        }).then(() => {
+            $('#modaleditSmartphone').modal('hide');
+        });
     });
     
 }
@@ -198,76 +212,94 @@ $(document).ready(function () {
         }, false);
     });
 
-    // GET SUPPLIER
-    $.ajax({
-        url: "/Supplier/get",
-        method: "GET",
-    }).done((result) => {
-        let text = '<option value="">Pilih Supplier</option>';
-        $.each(result, function (key, val){
-            text += '<option value="'+val.idSupplier+'">'+val.nameSupplier+'</option>'
-        });
+    // Add validation error 401
+    $("#addSmartphones").on('click', () => {
 
-        $("#idSupplier").html(text);
-    });
+        $("#addSmartphone").modal('show');
 
-    // VALIDATE ADD SMARTPHONE 
-    var forms = document.getElementsByClassName('needs-validation');
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            } else{
+        // GET SUPPLIER
+        $.ajax({
+            url: "/Supplier/get",
+            method: "GET",
+        }).done((result) => {
+            let text = '<option value="">Pilih Supplier</option>';
+            $.each(result, function (key, val){
+                text += '<option value="'+val.idSupplier+'">'+val.nameSupplier+'</option>'
+            });
+            
+            $("#idSupplier").html(text);
 
-                event.preventDefault();
+            // VALIDATE ADD SMARTPHONE 
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    } else{
 
-                let obj = {};
-                obj.idSupplier = parseInt($("#idSupplier").val());
-                obj.nameSmartphone = $("#nameSmartphone").val();
-                obj.priceSmartphone = parseInt($("#priceSmartphone").val());
-                obj.stockSmartphoen = parseInt($("#stockSmartphoen").val());
+                        event.preventDefault();
 
-                console.log(obj);
+                        let obj = {};
+                        obj.idSupplier = parseInt($("#idSupplier").val());
+                        obj.nameSmartphone = $("#nameSmartphone").val();
+                        obj.priceSmartphone = parseInt($("#priceSmartphone").val());
+                        obj.stockSmartphoen = parseInt($("#stockSmartphoen").val());
 
-                // ADD DATA SMARTPHONE
-                $.ajax({
-                    headers: { 
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json' 
-                    },
-                    url: "/Smartphone/add",
-                    type: "POST",
-                    dataType: "json",
-                    data: JSON.stringify(obj),
-                    success: function(data){
-                        $("#smartphone").DataTable().ajax.reload();
-                        $('#addSmartphone').modal('hide');
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Data has been saved'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $("#idSupplier").val('');
-                                $("#nameSmartphone").val('');
-                                $("#priceSmartphone").val('');
-                                $("#stockSmartphoen").val('');
+                        console.log(obj);
+
+                        // ADD DATA SMARTPHONE
+                        $.ajax({
+                            headers: { 
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json' 
+                            },
+                            url: "/Smartphone/add",
+                            type: "POST",
+                            dataType: "json",
+                            data: JSON.stringify(obj),
+                            beforeSend: function (data) {
+                                data.setRequestHeader("RequestVerificationToken", $("[name='__RequestVerificationToken']").val());
+                            },
+                            success: function(data){
+                                $("#smartphone").DataTable().ajax.reload();
+                                $('#addSmartphone').modal('hide');
+                                Swal.fire({
+                                    icon: 'success',
+                                    text: 'Data has been saved'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $("#idSupplier").val('');
+                                        $("#nameSmartphone").val('');
+                                        $("#priceSmartphone").val('');
+                                        $("#stockSmartphoen").val('');
+                                    }
+                                });
+                            },
+                            error: function (errormessage) {
+                                console.log(errormessage)
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
+                                })
+                                
                             }
                         });
-                    },
-                    error: function (errormessage) {
-                        console.log(errormessage)
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Error Code '+errormessage.responseJSON.status +' With '+ errormessage.responseJSON.title
-                          })
-                          
                     }
-                });
-            }
-            form.classList.add('was-validated');
-        }, false);
+                    form.classList.add('was-validated');
+                }, false);
+            });
+
+        }).fail(() => {
+            Swal.fire({
+                title : '401',
+                text : 'Unauthorized',
+                icon : 'error'
+            }).then(() => {
+                $('#addSmartphone').modal('hide');
+            });
+        });
     });
 
     // DATATABLE SMARTPHONE

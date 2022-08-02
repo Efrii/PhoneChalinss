@@ -48,6 +48,7 @@ namespace PhoneChalin.Base
         }
 
         [HttpPost("Add")]
+        [ValidateAntiForgeryToken]
         public JsonResult Post([FromBody] TModel model)
         {
             var result = Repository.Post(model);

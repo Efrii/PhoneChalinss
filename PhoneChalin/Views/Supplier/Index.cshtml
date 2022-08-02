@@ -55,52 +55,53 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form class="needs-validation" novalidate>
-            <div class="modal-body">
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="brandSupplier">Brand Supplier</label>
-                            <input type="text" class="form-control" name="brandSupplier" id="brandSupplier" placeholder="Brand Supplier" required>
-                        <div class="invalid-feedback">
-                            Brand supplier is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="nameSupplier">Name Supplier</label>
-                            <input type="text" class="form-control" name="nameSupplier" id="nameSupplier" placeholder="Name Supplier" required>
-                        <div class="invalid-feedback">
-                            Name supplier is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="phone">Phone Supplier</label>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Supplier" minlength="12" maxlength="12" pattern="[0-9]+" required>
-                        <div class="invalid-feedback">
-                            Phone number cannot be less than 11 characters
-                            <br>
-                            Phone number must contain numbers
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                        <label for="address">Address Supplier</label>
-                        <textarea class="form-control" name="address" id="address" rows="3" required></textarea>
-                        <div class="invalid-feedback">
-                            Address supplier is required
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="submitSupplier">Submit</button>
-            </div>
-        </form>
+      <form class="needs-validation" novalidate>
+          @Html.AntiForgeryToken()
+          <div class="modal-body">
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="brandSupplier">Brand Supplier</label>
+                      <input type="text" class="form-control" name="brandSupplier" id="brandSupplier" placeholder="Brand Supplier" required>
+                      <div class="invalid-feedback">
+                          Brand supplier is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="nameSupplier">Name Supplier</label>
+                      <input type="text" class="form-control" name="nameSupplier" id="nameSupplier" placeholder="Name Supplier" required>
+                      <div class="invalid-feedback">
+                          Name supplier is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="phone">Phone Supplier</label>
+                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Supplier" minlength="12" maxlength="12" pattern="[0-9]+" required>
+                      <div class="invalid-feedback">
+                          Phone number cannot be less than 11 characters
+                          <br>
+                          Phone number must contain numbers
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="address">Address Supplier</label>
+                      <textarea class="form-control" name="address" id="address" rows="3" required></textarea>
+                      <div class="invalid-feedback">
+                          Address supplier is required
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="submitSupplier">Submit</button>
+          </div>
+      </form>
     </div>
   </div>
 </div>

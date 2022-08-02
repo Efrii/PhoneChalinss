@@ -28,6 +28,5 @@ namespace PhoneChalin.Controllers
         {
             return View();
         }
-
     }
 }

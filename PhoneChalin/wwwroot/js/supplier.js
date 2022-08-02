@@ -187,6 +187,9 @@ $(document).ready(function () {
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify(obj),
+                    beforeSend: function (data) {
+                        data.setRequestHeader("RequestVerificationToken", $("[name='__RequestVerificationToken']").val());
+                    },
                     success: function(data){
                         $("#supplierDataTable").DataTable().ajax.reload();
                         $('#addSupplier').modal('hide');

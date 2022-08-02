@@ -22,7 +22,7 @@ namespace PhoneChalin.Repositories.Data
         {
             List<Smartphone> smartphones = new List<Smartphone>();
 
-            var responseTask = await client.GetAsync("https://localhost:42573/api/smartphone/getall");
+            var responseTask = await client.GetAsync(request + "getall");
 
             if (responseTask.IsSuccessStatusCode)
             {

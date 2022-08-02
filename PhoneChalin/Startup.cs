@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using PhoneChalin.Repositories.Data;
 using PhoneChalin.Repositories.Interfaces;
 using API.Middleware;
+using System.Net;
 
 namespace PhoneChalin
 {
@@ -32,16 +33,6 @@ namespace PhoneChalin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTokenAuthentication(Configuration);
-
-            // Depedency Repository
-            // Tambahkan Depedency Repository setiap membuat repository baru
-            services.AddScoped<SupplierRepository>();
-            services.AddScoped<SmartphoneRepository>();
-            services.AddScoped<BuyerRepository>();
-            services.AddScoped<AccountRepository>();
-            services.AddScoped<EmployeeRepository>();
-
             services.AddControllersWithViews();
 
             //Use Session
@@ -53,16 +44,23 @@ namespace PhoneChalin
             });
 
             // jwt ser
+            services.AddTokenAuthentication(Configuration);
 
             //
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // Depedency Repository
+            // Tambahkan Depedency Repository setiap membuat repository baru
+            services.AddScoped<SupplierRepository>();
+            services.AddScoped<SmartphoneRepository>();
+            services.AddScoped<BuyerRepository>();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // use status code
-            app.UseStatusCodePages();
 
             if (env.IsDevelopment())
             {
@@ -78,7 +76,30 @@ namespace PhoneChalin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // use status code
+            app.UseStatusCodePages( async context => {
+                var request = context.HttpContext.Request;
+                var response = context.HttpContext.Response;
+
+                if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized)){
+
+                    response.Redirect("/401");
+
+                } else if (response.StatusCode.Equals((int) HttpStatusCode.NotFound))
+                {
+
+                    response.Redirect("/404");
+
+                }else if (response.StatusCode.Equals((int) HttpStatusCode.Forbidden))
+                {
+
+                    response.Redirect("/403");
+
+                }
+            });
+
             app.UseRouting();
+
             //Use Session
             app.UseSession();
 
@@ -101,7 +122,7 @@ namespace PhoneChalin
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Smartphone}/{action=Index}/{id?}");
+                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
             });
         }
     }

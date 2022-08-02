@@ -52,47 +52,48 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form class="needs-validation" novalidate>
-            <div class="modal-body">
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="nameBuyer">Name Buyer</label>
-                            <input type="text" class="form-control" name="nameBuyer" id="nameBuyer" placeholder="Name Buyer" required>
-                        <div class="invalid-feedback">
-                            Name buyer is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="nameSupplier">Gender Buyer</label>
-                            <select class="form-control" name="gender" id="gender" required>
-                                <option value="">Pilih Gender</option>
-                                <option value="L">Laki - Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        <div class="invalid-feedback">
-                            Gender buyer is required
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col mb-3">
-                            <label for="phone">Phone Buyer</label>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Buyer" minlength="12" maxlength="12" pattern="[0-9]+" required>
-                        <div class="invalid-feedback">
-                            Phone number cannot be less than 11 characters
-                            <br>
-                            Phone number must contain numbers
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="submitBuyer">Submit</button>
-            </div>
-        </form>
+      <form class="needs-validation" novalidate>
+          @Html.AntiForgeryToken()
+          <div class="modal-body">
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="nameBuyer">Name Buyer</label>
+                      <input type="text" class="form-control" name="nameBuyer" id="nameBuyer" placeholder="Name Buyer" required>
+                      <div class="invalid-feedback">
+                          Name buyer is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="nameSupplier">Gender Buyer</label>
+                      <select class="form-control" name="gender" id="gender" required>
+                          <option value="">Pilih Gender</option>
+                          <option value="L">Laki - Laki</option>
+                          <option value="P">Perempuan</option>
+                      </select>
+                      <div class="invalid-feedback">
+                          Gender buyer is required
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col mb-3">
+                      <label for="phone">Phone Buyer</label>
+                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Buyer" minlength="12" maxlength="12" pattern="[0-9]+" required>
+                      <div class="invalid-feedback">
+                          Phone number cannot be less than 11 characters
+                          <br>
+                          Phone number must contain numbers
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="submitBuyer">Submit</button>
+          </div>
+      </form>
     </div>
   </div>
 </div>

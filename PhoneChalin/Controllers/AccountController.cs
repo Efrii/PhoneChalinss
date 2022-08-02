@@ -48,35 +48,38 @@ namespace PhoneChalin.Controllers
             var postTask = client.PostAsJsonAsync<User>("Account/Login", login);
             postTask.Wait();
 
-            //var jwt = new JwtService(config);
+            var jwt = new JwtService(config);
+
             var result = postTask.Result;
 
             if (result.IsSuccessStatusCode)
             {
                 var readTask = result.Content.ReadAsStringAsync().Result;
                 var parsedObject = JObject.Parse(readTask);
-                var token = parsedObject["token"].ToString();
+                //var token = parsedObject["token"].ToString();
 
                 var d = parsedObject["data"].ToString();
                 var datas = JsonConvert.DeserializeObject<User>(d);
-                //var idToken = jwt.GenerateSecurityToken(datas);
+
+                var idToken = jwt.GenerateSecurityToken(datas);
 
                 List<RoleVM> userRole = new List<RoleVM>();
                 foreach (var item in datas.UserRoles)
-                {
+                { 
                     RoleVM role = new RoleVM()
                     {
                         RoleEmployee = item.Role.RoleEmployee
                     };
 
                     userRole.Add(role);
-                    HttpContext.Session.SetString("Role", item.Role.RoleEmployee);
                 }
 
+                // Set Session 
+                HttpContext.Session.SetString("Role", JsonConvert.SerializeObject(userRole));
                 HttpContext.Session.SetString("Id", datas.Id.ToString());
                 HttpContext.Session.SetString("Username", datas.Username);
                 HttpContext.Session.SetString("Email", datas.Email);
-                HttpContext.Session.SetString("Token", token);
+                HttpContext.Session.SetString("Token", idToken);
 
                 return Json(new {
                     status = result.StatusCode,
@@ -85,7 +88,7 @@ namespace PhoneChalin.Controllers
                         username = datas.Username,
                         email = datas.Email,
                         role = userRole },
-                    token = token
+                    token = idToken
                 });
 
             } else
@@ -103,41 +106,13 @@ namespace PhoneChalin.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        [HttpGet]
-        public IActionResult Register()
-        {
-            //var roles = accountRepository.GetRole();
-            //if (roles.Count() > 0)
-            //{
-            //    return View(roles);
-            //}
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Register register)
+        public JsonResult Register([FromBody] Register register)
         {
+            var data = accountRepository.Register(register);
 
-            var d = Json(register);
-
-            //if (ModelState.IsValid)
-            //{
-            //    var postTask = client.PostAsJsonAsync<Register>("Account/Register", register);
-            //    postTask.Wait();
-
-            //    var result = postTask.Result;
-            //    if (result.IsSuccessStatusCode)
-            //    {
-            //        return RedirectToAction("Catalog", "Smartphone");
-            //    }
-            //    else
-            //    {
-            //        TempData["loginInvalid"] = "Login Failed";
-            //        return View();
-            //    }
-            //}
-            return d;
+            return Json(data);
         }
     }
 }
